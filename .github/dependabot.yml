@@ -1,0 +1,38 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    target-branch: "updates"
+    open-pull-requests-limit: 50
+    labels:
+      - "type:build"
+      - "scope:deps"
+    groups:
+      commitlint:
+        patterns:
+          - "@commitlint/*"
+          - "conventional-changelog-conventionalcommits"
+      semantic-release:
+        patterns:
+          - "semantic-release"
+          - "@semantic-release/*"
+      storybook:
+        patterns:
+          - "storybook"
+          - "@storybook/*"
+          - "chromatic"
+          - "react*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    target-branch: "updates"
+    open-pull-requests-limit: 50
+    commit-message:
+      prefix: "build(deps-dev)"
+    labels:
+      - "type:build"
+      - "scope:deps-dev"

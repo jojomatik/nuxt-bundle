@@ -1,0 +1,29 @@
+name: Build
+on:
+  push:
+    branches: [updates, next]
+  pull_request:
+    branches: [main, beta, updates, next]
+
+jobs:
+  yarn_build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Cache node modules
+        uses: actions/cache@v3
+        id: cache
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+      - name: Lint
+        run: yarn lint
