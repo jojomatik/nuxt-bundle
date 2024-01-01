@@ -62,6 +62,9 @@ export default defineNuxtConfig({
     },
   },
   i18n: {},
+  experimental: {
+    externalVue: false,
+  },
   vite: {
     define: {
       "process.env.DEBUG": "false",
