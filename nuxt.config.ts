@@ -39,6 +39,7 @@ export default defineNuxtConfig({
         {
           rel: "manifest",
           href: "/assets/favicon/site.webmanifest",
+          crossorigin: "anonymous",
         },
         {
           rel: "mask-icon",
