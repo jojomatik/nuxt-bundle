@@ -64,6 +64,9 @@
     "vue-router": "4.2.5",
     "vuetify": "3.4.9"
   },
+  "devDependencies": {
+    "nuxt": "3.7.4"
+  },
   "peerDependencies": {
     "nuxt": "^3.7.4"
   },
