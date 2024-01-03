@@ -49,7 +49,7 @@
     "prettier": "3.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "rollup": "3.26.2",
+    "rollup": "4.9.2",
     "rollup-plugin-license": "3.0.1",
     "sass": "1.63.6",
     "semantic-release": "22.0.12",
