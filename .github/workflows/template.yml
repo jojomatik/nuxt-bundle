@@ -26,7 +26,7 @@ jobs:
       - name: Install correct version of nuxt-bundle
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn add ${{ github.repository }}#${{ github.ref }}
-      - name: Lint
+      - name: Build
         run: yarn build
       - name: Lint
         run: yarn lint
