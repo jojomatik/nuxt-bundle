@@ -26,8 +26,6 @@ jobs:
         run: yarn install --frozen-lockfile      
       - name: Install correct version of nuxt-bundle
         run: yarn add ${{ github.repository }}#${{ github.ref }}
-        env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
       - name: Build
         run: yarn build
       - name: Lint
