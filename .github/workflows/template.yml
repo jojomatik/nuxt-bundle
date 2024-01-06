@@ -1,4 +1,4 @@
-name: Build template
+name: Build template and deploy to vercel
 on: push
 
 jobs:
@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
       - name: Cache node modules
         uses: actions/cache@v3
         id: cache
@@ -26,7 +28,47 @@ jobs:
         run: yarn install --frozen-lockfile      
       - name: Install correct version of nuxt-bundle
         run: yarn add ${{ github.repository }}#${{ github.ref }}
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build
         run: yarn build
       - name: Lint
         run: yarn lint
+
+  vercel_deploy:        
+    name: Deploy template
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: 
+          repository: jojomatik/nuxt-3-base
+          ref: build/nuxt-bundle
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Cache node modules
+        uses: actions/cache@v3
+        id: cache
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile    
+      - name: Install correct version of nuxt-bundle
+        run: yarn add ${{ github.repository }}#${{ github.ref }}
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+
