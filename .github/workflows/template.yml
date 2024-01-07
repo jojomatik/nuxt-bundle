@@ -9,7 +9,6 @@ jobs:
       - uses: actions/checkout@v4
         with: 
           repository: jojomatik/nuxt-3-base
-          ref: build/nuxt-bundle
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
@@ -38,7 +37,6 @@ jobs:
       - uses: actions/checkout@v4
         with: 
           repository: jojomatik/nuxt-3-base
-          ref: build/nuxt-bundle
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
