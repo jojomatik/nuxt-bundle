@@ -1,6 +1,6 @@
 {
   "name": "@jojomatik/nuxt-bundle",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "description": "A bundle of commonly used nuxt dependencies and configuration.",
   "keywords": [
     "nuxt",
