@@ -65,7 +65,7 @@
     "vuetify": "3.4.9"
   },
   "devDependencies": {
-    "nuxt": "3.7.4"
+    "nuxt": "3.9.1"
   },
   "peerDependencies": {
     "nuxt": "^3.7.4"
