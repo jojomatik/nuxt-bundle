@@ -61,6 +61,7 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
         env:
           NITRO_PRESET: vercel
+          NUXT_IMAGE_PROVIDER: vercel
       - name: Deploy Project Artifacts to Vercel (Preview)
         if: github.ref != 'refs/heads/main'
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
