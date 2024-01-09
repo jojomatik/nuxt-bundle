@@ -37,7 +37,7 @@
     "@storybook/testing-library": "0.2.2",
     "@storybook/vue3": "7.6.7",
     "@storybook/vue3-vite": "7.6.7",
-    "@types/node": "18.16.19",
+    "@types/node": "18.19.6",
     "@unhead/vue": "1.8.9",
     "chromatic": "10.2.0",
     "conventional-changelog-conventionalcommits": "7.0.2",
