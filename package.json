@@ -38,7 +38,7 @@
     "@storybook/vue3": "7.6.7",
     "@storybook/vue3-vite": "7.6.7",
     "@types/node": "18.19.6",
-    "@unhead/vue": "1.8.9",
+    "@unhead/vue": "1.8.10",
     "chromatic": "10.2.1",
     "conventional-changelog-conventionalcommits": "7.0.2",
     "eslint-config-prettier": "9.1.0",
