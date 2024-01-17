@@ -62,7 +62,7 @@
     "vuetify": "3.4.10"
   },
   "devDependencies": {
-    "nuxt": "3.9.1",
+    "nuxt": "3.9.3",
     "vue": "3.4.10",
     "vite": "5.0.11",
     "eslint": "8.56.0"
