@@ -54,7 +54,7 @@
     "semantic-release": "22.0.12",
     "storybook": "7.6.7",
     "typescript": "5.3.3",
-    "unplugin-auto-import": "0.17.3",
+    "unplugin-auto-import": "0.17.4",
     "unplugin-vue-components": "0.26.0",
     "vite-plugin-vuetify": "2.0.1",
     "vue-i18n": "9.9.0",
