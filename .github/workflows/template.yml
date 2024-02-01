@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: '18'
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: cache
         env:
           cache-name: cache-node-modules
@@ -43,7 +43,7 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: cache
         env:
           cache-name: cache-node-modules
