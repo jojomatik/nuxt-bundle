@@ -31,7 +31,7 @@ jobs:
           node-version: '18'
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
-      - name: IInstall dependencies and correct version of nuxt-bundle
+      - name: Install dependencies and correct version of nuxt-bundle
         run: yarn add ${{ github.repository }}#${{ github.ref }}
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
