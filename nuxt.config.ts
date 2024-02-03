@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import chalk from "chalk";
-import vuetify from "vite-plugin-vuetify";
+import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 import license from "rollup-plugin-license";
 
 export default defineNuxtConfig({
@@ -49,8 +49,18 @@ export default defineNuxtConfig({
       ],
     },
   },
+  build: { transpile: ["vuetify"] },
   css: ["vuetify/styles"],
-  modules: ["@nuxt/image", "@nuxtjs/i18n", "@nuxtjs/robots"],
+  modules: [
+    "@nuxt/image",
+    "@nuxtjs/i18n",
+    "@nuxtjs/robots",
+    (_options, nuxt) => {
+      nuxt.hooks.hook("vite:extendConfig", (config) => {
+        config.plugins.push(vuetify({ autoImport: true }));
+      });
+    },
+  ],
   hooks: {
     "nitro:build:before": () => {
       const fontsDir = "public/assets/fonts/";
@@ -69,8 +79,8 @@ export default defineNuxtConfig({
     ssr: {
       noExternal: ["vuetify"],
     },
+    vue: { template: { transformAssetUrls } },
     plugins: [
-      vuetify(),
       license({
         thirdParty: {
           includePrivate: false,
