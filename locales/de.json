@@ -1,0 +1,8 @@
+{
+  "nuxt-bundle": {
+    "license-information": {
+      "description": "Diese Webseite basiert auf Free Open Source Software (FOSS), die gesonderten Lizenzbedingungen unterliegen, die im folgenden aufgelistet werden.",
+      "title": "Lizenzinformationen"
+    }
+  }
+}
