@@ -10,7 +10,7 @@
     "configuration"
   ],
   "scripts": {
-    "lint": "eslint --ext .ts,.js,.vue .",
+    "lint": "eslint . --max-warnings 0",
     "semantic-release": "semantic-release"
   },
   "files": [

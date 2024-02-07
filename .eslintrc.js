@@ -2,18 +2,27 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    "vue/setup-compiler-macros": "true",
   },
   extends: [
     "@nuxtjs/eslint-config-typescript",
     "plugin:prettier/recommended",
     "plugin:storybook/recommended",
   ],
+  ignorePatterns: "!pages/license-information.vue",
   parserOptions: {
     ecmaVersion: 2020,
+    sourceType: "module",
   },
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-console":
+      process.env.NODE_ENV === "production"
+        ? [
+            "error",
+            {
+              allow: ["warn", "error"],
+            },
+          ]
+        : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
   },
   overrides: [
