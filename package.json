@@ -11,6 +11,9 @@
     "configuration"
   ],
   "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs",
     "lint": "eslint . --max-warnings 0",
     "semantic-release": "semantic-release"
   },
