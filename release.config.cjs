@@ -4,7 +4,10 @@ module.exports = {
       "@semantic-release/commit-analyzer",
       {
         preset: "angular",
-        releaseRules: [{ type: "build", scope: "deps", release: "patch" }],
+        releaseRules: [
+          { type: "build", scope: "deps", release: "patch" },
+          { type: "lang", release: "minor" },
+        ],
       },
     ],
     [
@@ -26,6 +29,11 @@ module.exports = {
             {
               type: "perf",
               section: "Performance Improvements",
+              hidden: false,
+            },
+            {
+              type: "lang",
+              section: "Translation Updates",
               hidden: false,
             },
             {
