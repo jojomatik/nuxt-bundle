@@ -1,1 +1,16 @@
-{}
+{
+  "nuxt-bundle": {
+    "error": {
+      "404": {
+        "description": "Ce site n'existe pas",
+        "title": "404 Non trouvé"
+      },
+      "description": "Une erreur inconnue est survenue",
+      "title": "Erreur {error}"
+    },
+    "license-information": {
+      "description": "Ce site web est basé sur des logiciels à code source ouvert (Free Open Source Software, FOSS), qui sont soumis à des conditions de licence distinctes, énumérées ci-dessous.",
+      "title": "Informations de licence"
+    }
+  }
+}
