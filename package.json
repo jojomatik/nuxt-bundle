@@ -28,7 +28,7 @@
   ],
   "main": "nuxt.config.ts",
   "dependencies": {
-    "@crystal-creations/crystal-components": "^1.0.0-beta.1",
+    "@crystal-creations/crystal-components": "1.0.0-beta.1",
     "@fontsource/roboto": "5.0.8",
     "@mdi/js": "7.4.47",
     "@nuxt/image": "1.2.0",
