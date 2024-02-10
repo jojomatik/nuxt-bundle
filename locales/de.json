@@ -1,15 +1,15 @@
 {
   "nuxt-bundle": {
     "error": {
-      "title": "Fehler {error}",
-      "description": "Ein unbekannter Fehler ist aufgetreten",
       "404": {
-        "title": "404 Nicht Gefunden",
-        "description": "Diese Seite existiert nicht"
-      }
+        "description": "Diese Seite existiert nicht",
+        "title": "404 Nicht Gefunden"
+      },
+      "description": "Ein unbekannter Fehler ist aufgetreten",
+      "title": "Fehler {error}"
     },
     "license-information": {
-      "description": "Diese Webseite basiert auf Free Open Source Software (FOSS), die gesonderten Lizenzbedingungen unterliegen, die im folgenden aufgelistet werden.",
+      "description": "{title} basiert auf Free Open Source Software (FOSS), die gesonderten Lizenzbedingungen unterliegen, die im folgenden aufgelistet werden.",
       "title": "Lizenzinformationen"
     }
   }
