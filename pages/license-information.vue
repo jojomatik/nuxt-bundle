@@ -96,8 +96,12 @@ useHead({
 useSeoMeta({
   title: i18n.t("nuxt-bundle.license-information.title"),
   ogTitle: i18n.t("nuxt-bundle.license-information.title"),
-  description: i18n.t("nuxt-bundle.license-information.description"),
-  ogDescription: i18n.t("nuxt-bundle.license-information.description"),
+  description: i18n.t("nuxt-bundle.license-information.description", {
+    title: i18n.t("title"),
+  }),
+  ogDescription: i18n.t("nuxt-bundle.license-information.description", {
+    title: i18n.t("title"),
+  }),
 });
 </script>
 
