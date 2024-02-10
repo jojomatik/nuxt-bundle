@@ -49,7 +49,7 @@
     "@storybook/vue3": "7.6.13",
     "@storybook/vue3-vite": "7.6.13",
     "@types/node": "18.19.15",
-    "chromatic": "10.9.1",
+    "chromatic": "10.9.3",
     "conventional-changelog-conventionalcommits": "7.0.2",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.1.3",
