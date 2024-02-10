@@ -9,7 +9,7 @@
       }
     },
     "license-information": {
-      "description": "This website is based on Free Open Source Software (FOSS), which is subject to separate license conditions, which are listed below.",
+      "description": "{title} is based on Free Open Source Software (FOSS), which is subject to separate license conditions, which are listed below.",
       "title": "License information"
     }
   }

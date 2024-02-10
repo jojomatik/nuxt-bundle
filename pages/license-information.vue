@@ -4,7 +4,11 @@
       {{ i18n.t("nuxt-bundle.license-information.title") }}
     </p>
     <p class="text-body-1">
-      {{ i18n.t("nuxt-bundle.license-information.description") }}
+      {{
+        i18n.t("nuxt-bundle.license-information.description", {
+          title: i18n.t("title"),
+        })
+      }}
     </p>
     <v-row v-if="pending">
       <v-col v-for="index in 12" :key="index" cols="12" md="6" lg="4" xl="3">
