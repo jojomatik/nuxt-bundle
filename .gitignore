@@ -1,2 +1,11 @@
-/node_modules/
+node_modules
+*.log
+.nuxt
+nuxt.d.ts
+.output
+.env
+public/assets/fonts
+public/dependencies.json
+storybook-static
+.storybook/imports.d.ts
 yarn.lock
