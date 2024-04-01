@@ -68,7 +68,7 @@
     "unplugin-auto-import": "0.17.5",
     "unplugin-vue-components": "0.26.0",
     "vite-plugin-vuetify": "2.0.3",
-    "vue-i18n": "9.9.1",
+    "vue-i18n": "9.10.2",
     "vue-router": "4.3.0",
     "vuetify": "3.5.4"
   },
