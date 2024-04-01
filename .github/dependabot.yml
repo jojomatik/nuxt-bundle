@@ -22,6 +22,8 @@ updates:
         patterns:
           - "storybook"
           - "@storybook/*"
+          - "storybook-i18n"
+          - "eslint-plugin-storybook"
           - "chromatic"
           - "react*"
 
