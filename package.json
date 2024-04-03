@@ -70,7 +70,7 @@
     "vite-plugin-vuetify": "2.0.3",
     "vue-i18n": "9.10.2",
     "vue-router": "4.3.0",
-    "vuetify": "3.5.4"
+    "vuetify": "3.5.14"
   },
   "devDependencies": {
     "eslint": "8.57.0",
