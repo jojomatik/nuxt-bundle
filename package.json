@@ -49,6 +49,7 @@
     "@storybook/vue3": "8.0.5",
     "@storybook/vue3-vite": "8.0.5",
     "@types/node": "18.19.29",
+    "@vitejs/plugin-vue": "^5.0.4",
     "chromatic": "11.3.0",
     "conventional-changelog-conventionalcommits": "7.0.2",
     "eslint-config-prettier": "9.1.0",
