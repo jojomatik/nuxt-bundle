@@ -75,7 +75,7 @@
   "devDependencies": {
     "eslint": "8.57.0",
     "nuxt": "3.11.1",
-    "vite": "5.2.7",
+    "vite": "5.2.8",
     "vue": "3.4.21"
   },
   "peerDependencies": {
