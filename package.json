@@ -63,7 +63,7 @@
     "sass": "1.72.0",
     "semantic-release": "22.0.12",
     "storybook": "7.6.15",
-    "storybook-i18n": "^2.0.13",
+    "storybook-i18n": "^3.0.1",
     "typescript": "5.4.3",
     "unplugin-auto-import": "0.17.5",
     "unplugin-vue-components": "0.26.0",
