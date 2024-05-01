@@ -65,7 +65,7 @@
     "storybook-i18n": "^3.0.1",
     "typescript": "5.4.3",
     "unplugin-auto-import": "0.17.5",
-    "unplugin-vue-components": "0.26.0",
+    "unplugin-vue-components": "0.27.0",
     "vite-plugin-vuetify": "2.0.3",
     "vue-i18n": "9.10.2",
     "vue-router": "4.3.0",
