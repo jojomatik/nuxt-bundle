@@ -31,7 +31,7 @@
     "@crystal-creations/crystal-components": "1.0.0-beta.22",
     "@fontsource/roboto": "5.0.12",
     "@mdi/js": "7.4.47",
-    "@nuxt/image": "1.5.0",
+    "@nuxt/image": "1.7.0",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@nuxtjs/i18n": "8.3.0",
     "@nuxtjs/robots": "3.0.0",
