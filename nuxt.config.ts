@@ -78,6 +78,9 @@ export default defineNuxtConfig({
     ],
     "@nuxtjs/seo",
   ],
+  licenseModule: {
+    allowedLicenses: ["MIT", "Apache-2.0"],
+  },
   hooks: {
     "nitro:build:before": () => {
       const fontsDir = "public/assets/fonts/";
