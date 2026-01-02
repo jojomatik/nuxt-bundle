@@ -10,8 +10,11 @@ export function getLocales(): { code: string; file: string }[] {
   const files = fs.readdirSync("./locales");
 
   return files.map((file) => {
+    const code = file.split(".")[0];
+
     return {
-      code: file.split(".")[0],
+      code,
+      iso: code,
       file,
     };
   });
