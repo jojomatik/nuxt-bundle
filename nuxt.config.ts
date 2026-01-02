@@ -77,7 +77,7 @@ export default defineNuxtConfig({
         langDir: "locales",
       },
     ],
-    "@nuxtjs/robots",
+    "@nuxtjs/seo",
   ],
   hooks: {
     "nitro:build:before": () => {
