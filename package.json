@@ -20,6 +20,7 @@
   "files": [
     "assets",
     "locales",
+    "modules",
     "pages",
     "error.vue",
     "nuxt.config.ts",
