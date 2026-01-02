@@ -11,7 +11,7 @@ jobs:
           repository: jojomatik/nuxt-3-base
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
       - name: Install dependencies and correct version of nuxt-bundle
         run: yarn add ${{ github.repository }}#${{ github.ref }}
       - name: Build
@@ -28,7 +28,7 @@ jobs:
           repository: jojomatik/nuxt-3-base
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Install dependencies and correct version of nuxt-bundle
