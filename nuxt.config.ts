@@ -1,15 +1,16 @@
 import * as fs from "fs";
 import chalk from "chalk";
 import vuetify from "vite-plugin-vuetify";
+import type { LocaleObject } from "@nuxtjs/i18n";
 
 /**
  * Returns all locales with their corresponding file names from `./locales`.
  */
-export function getLocales(): { code: string; file: string }[] {
+export function getLocales(): LocaleObject<string>[] {
   const files = fs.readdirSync("./locales");
 
   return files.map((file) => {
-    const code = file.split(".")[0];
+    const code = file.split(".")[0] as string;
 
     return {
       code,
@@ -69,17 +70,17 @@ export default defineNuxtConfig({
   modules: [
     "@crystal-creations/crystal-components/nuxt",
     "@nuxt/image",
-    [
-      "@nuxtjs/i18n",
-      {
-        locales: getLocales(),
-        langDir: "locales",
-      },
-    ],
+    "@nuxtjs/i18n",
     "@nuxtjs/seo",
   ],
   licenseModule: {
     allowedLicenses: ["MIT", "Apache-2.0"],
+  },
+  i18n: {
+    locales: getLocales(),
+    defaultLocale: "en",
+    restructureDir: ".",
+    langDir: "locales",
   },
   hooks: {
     "nitro:build:before": () => {
