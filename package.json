@@ -50,7 +50,7 @@
     "@storybook/types": "8.6.14",
     "@storybook/vue3": "8.6.14",
     "@storybook/vue3-vite": "8.6.14",
-    "@types/node": "24.10.4",
+    "@types/node": "25.0.3",
     "@vitejs/plugin-vue": "^6.0.3",
     "chromatic": "13.3.4",
     "conventional-changelog-conventionalcommits": "9.1.0",
