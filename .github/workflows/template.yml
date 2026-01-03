@@ -12,45 +12,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Inject nuxt-bundle dependency
-        run: |
-          node <<'EOF'
-          import { existsSync, readFileSync, writeFileSync } from "fs";
-          import { resolve } from "path";
-          
-          const pkgPath = resolve(process.cwd(), "package.json");
-          
-          if (!existsSync(pkgPath)) {
-            console.error("[ERROR] package.json not found");
-            process.exit(1);
-          }
-          
-          const repo = process.env.GITHUB_REPOSITORY;
-          const ref = process.env.GITHUB_REF;
-          
-          if (!repo || !ref) {
-            console.error("[ERROR] GITHUB_REPOSITORY or GITHUB_REF not set");
-            process.exit(1);
-          }
-          
-          const gitRef = ref.replace(/^refs\/heads\//, "");
-          
-          const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
-          
-          pkg.private = true;
-          pkg.dependencies ||= {};
-          pkg.resolutions ||= {};
-          
-          pkg.dependencies["@jojomatik/nuxt-bundle"] = "*";
-          pkg.resolutions["@jojomatik/nuxt-bundle"] = `${repo}#${gitRef}`;
-          
-          writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
-          
-          console.log("[SUCCESS] Injected @jojomatik/nuxt-bundle");
-          console.log(`   => ${repo}#${gitRef}`);
-          EOF
       - name: Install dependencies and correct version of nuxt-bundle
-        run: NODE_OPTIONS="--max_old_space_size=4096" yarn install --no-lockfile
+        run: yarn install --frozen-lockfile
+      - name: Install dependencies and correct version of nuxt-bundle
+        run: NODE_OPTIONS="--max_old_space_size=4096" yarn add ${{ github.repository }}#${{ github.ref }}
       - name: Build
         run: NODE_OPTIONS="--max_old_space_size=4096" yarn build
       - name: Lint
