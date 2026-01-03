@@ -34,7 +34,7 @@
     "@mdi/js": "7.4.47",
     "@nuxt/image": "2.0.0",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
-    "@nuxtjs/i18n": "8.3.0",
+    "@nuxtjs/i18n": "10.2.1",
     "@nuxtjs/seo": "3.3.0",
     "@semantic-release/exec": "7.1.0",
     "@semantic-release/git": "10.0.1",
