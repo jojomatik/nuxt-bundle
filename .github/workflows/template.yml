@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies and correct version of nuxt-bundle
         run: yarn add ${{ github.repository }}#${{ github.ref }}
       - name: Build
-        run: yarn build
+        run: NODE_OPTIONS="--max_old_space_size=4096" yarn build
       - name: Lint
         run: yarn lint
 

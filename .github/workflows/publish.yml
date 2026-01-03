@@ -27,7 +27,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
       - name: Build
-        run: yarn build
+        run: NODE_OPTIONS="--max_old_space_size=4096" yarn build
       - name: Lint
         run: yarn lint
 
