@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <v-app>
     <v-sheet class="ma-auto pa-5" border rounded="xl">
