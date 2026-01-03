@@ -29,7 +29,7 @@
   ],
   "main": "nuxt.config.ts",
   "dependencies": {
-    "@crystal-creations/crystal-components": "1.0.0-beta.43",
+    "@crystal-creations/crystal-components": "1.0.0-next.3",
     "@fontsource/roboto": "5.2.9",
     "@mdi/js": "7.4.47",
     "@nuxt/eslint": "^1.12.1",
