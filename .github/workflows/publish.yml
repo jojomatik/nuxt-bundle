@@ -41,7 +41,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.BOT_TOKEN }}
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -77,7 +77,7 @@ jobs:
         with:
           git_committer_name: ${{ secrets.BUMP_GIT_NAME }}
           git_committer_email: ${{ secrets.BUMP_GIT_EMAIL }}
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.BOT_TOKEN }}
   sync_beta_to_updates:
     if: ${{ github.ref == 'refs/heads/beta' }}
     name: Sync branch `beta` to `updates` (fast-forward enabled)
@@ -91,4 +91,4 @@ jobs:
           target: "updates"
           git_committer_name: ${{ secrets.BUMP_GIT_NAME }}
           git_committer_email: ${{ secrets.BUMP_GIT_EMAIL }}
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.BOT_TOKEN }}

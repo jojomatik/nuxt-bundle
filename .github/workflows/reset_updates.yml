@@ -19,4 +19,4 @@ jobs:
           source: 'beta'
           target: 'updates'
           strategy: 'force'
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.BOT_TOKEN }}
