@@ -52,7 +52,6 @@ module.exports = {
       "@semantic-release/git",
       {
         assets: [["**/package*.json", "!node_modules/**"]],
-        // eslint-disable-next-line no-template-curly-in-string
         message: "release: ${nextRelease.version}",
       },
     ],
