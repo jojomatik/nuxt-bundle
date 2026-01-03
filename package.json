@@ -67,7 +67,7 @@
     "storybook-i18n": "3.1.1",
     "typescript": "5.9.3",
     "vite-plugin-vuetify": "2.1.2",
-    "vue-i18n": "9.10.2",
+    "vue-i18n": "11.2.8",
     "vue-router": "4.6.4",
     "vuetify": "3.11.6"
   },
