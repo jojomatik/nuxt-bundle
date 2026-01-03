@@ -73,7 +73,7 @@
   },
   "devDependencies": {
     "eslint": "8.57.0",
-    "nuxt": "3.11.1",
+    "nuxt": "4.2.2",
     "vite": "7.3.0",
     "vue": "3.5.26"
   },
