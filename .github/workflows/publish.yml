@@ -35,6 +35,8 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta' }}
     name: Create a semantic release
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     needs:
       - yarn_build
     steps:
@@ -63,7 +65,6 @@ jobs:
           GIT_AUTHOR_EMAIL: ${{ secrets.BUMP_GIT_EMAIL }}
           GIT_COMMITTER_NAME: ${{ secrets.BUMP_GIT_NAME }}
           GIT_COMMITTER_EMAIL: ${{ secrets.BUMP_GIT_EMAIL }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: yarn semantic-release
   sync_main_to_beta:
     if: ${{ github.ref == 'refs/heads/main' }}
