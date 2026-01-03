@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install dependencies and correct version of nuxt-bundle
-        run: yarn add ${{ github.repository }}#${{ github.ref }}
+        run: NODE_OPTIONS="--max_old_space_size=4096" yarn add ${{ github.repository }}#${{ github.ref }}
       - name: Build
         run: NODE_OPTIONS="--max_old_space_size=4096" yarn build
       - name: Lint
@@ -32,11 +32,11 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Install dependencies and correct version of nuxt-bundle
-        run: yarn add ${{ github.repository }}#${{ github.ref }}
+        run: NODE_OPTIONS="--max_old_space_size=4096" yarn add ${{ github.repository }}#${{ github.ref }}
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        run: NODE_OPTIONS="--max_old_space_size=4096" vercel build --token=${{ secrets.VERCEL_TOKEN }}
         env:
           NITRO_PRESET: vercel
           NUXT_IMAGE_PROVIDER: vercel
