@@ -2,15 +2,16 @@ import * as fs from "fs";
 import chalk from "chalk";
 import vuetify from "vite-plugin-vuetify";
 import type { LocaleObject } from "@nuxtjs/i18n";
+import type { GeneratedLocale } from "@intlify/core-base";
 
 /**
  * Returns all locales with their corresponding file names from `./locales`.
  */
-export function getLocales(): LocaleObject<string>[] {
+export function getLocales(): LocaleObject<GeneratedLocale>[] {
   const files = fs.readdirSync("./locales");
 
   return files.map((file) => {
-    const code = file.split(".")[0] as string;
+    const code = file.split(".")[0] as GeneratedLocale;
 
     return {
       code,
