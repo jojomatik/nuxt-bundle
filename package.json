@@ -18,11 +18,9 @@
     "semantic-release": "semantic-release"
   },
   "files": [
-    "assets",
+    "app",
     "locales",
     "modules",
-    "pages",
-    "error.vue",
     "nuxt.config.ts",
     "package.json",
     "README.md"
