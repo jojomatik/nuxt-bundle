@@ -10,7 +10,7 @@ const logger = useLogger(moduleKey);
 export default defineNuxtModule({
   meta: {
     name: moduleKey,
-    configKey: "licenseModule"
+    configKey: "licenseModule",
   },
   setup(options, nuxt) {
     nuxt.hook("vite:extendConfig", (viteConfig) => {
@@ -25,60 +25,68 @@ export default defineNuxtModule({
                 if (!dependency.license) return false;
 
                 // Load allowed licenses from environment-variable
-                const allowedLicensesFromEnv =
-                  process.env[envKey]?.split(",").map((license) =>
-                    license.trim()
-                  );
+                const allowedLicensesFromEnv = process.env[envKey]
+                  ?.split(",")
+                  .map((license) => license.trim());
 
                 // Load allowed licenses from module options
                 // Allow MIT and Apache-2.0 licenses by default
-                const allowedLicenses = allowedLicensesFromEnv ?? options.allowedLicenses;
+                const allowedLicenses =
+                  allowedLicensesFromEnv ?? options.allowedLicenses;
 
                 const isLicenseAllowed = allowedLicenses.includes(
-                  dependency.license
+                  dependency.license,
                 );
 
                 if (!isLicenseAllowed) {
                   logger.error(
-                    `Dependency "${dependency.name}" has a license (${dependency.license}) that is not the list of allowed licenses (${allowedLicenses.join(", ")}).`
+                    `Dependency "${dependency.name}" has a license (${dependency.license}) that is not the list of allowed licenses (${allowedLicenses.join(", ")}).`,
                   );
 
-                  const requiredLicenses = [...allowedLicenses, dependency.license];
+                  const requiredLicenses = [
+                    ...allowedLicenses,
+                    dependency.license,
+                  ];
 
-                  const configContent = JSON.stringify({
-                    extends: "@jojomatik/nuxt-bundle",
-                    licenseModule:
-                      {
-                        allowedLicenses: requiredLicenses
-                      }
-                  }, undefined, 2);
+                  const configContent = JSON.stringify(
+                    {
+                      extends: "@jojomatik/nuxt-bundle",
+                      licenseModule: {
+                        allowedLicenses: requiredLicenses,
+                      },
+                    },
+                    undefined,
+                    2,
+                  );
 
-                  const configExample = "export default defineNuxtConfig(" + configContent + ");\n";
+                  const configExample =
+                    "export default defineNuxtConfig(" + configContent + ");\n";
 
                   logger.info(
-                    `You can specify allowed licenses in "nuxt.config.ts" environment variable:`
+                    `You can specify allowed licenses in "nuxt.config.ts" environment variable:`,
                   );
                   console.log(configExample);
 
                   logger.info(
-                    `You can also specify allowed licenses via "${envKey}" environment variable (ALLOWED_LICENCES=${requiredLicenses.join(",")}).`
+                    `You can also specify allowed licenses via "${envKey}" environment variable (ALLOWED_LICENCES=${requiredLicenses.join(",")}).`,
                   );
                 }
 
                 return isLicenseAllowed;
               },
               failOnUnlicensed: true,
-              failOnViolation: true
+              failOnViolation: true,
             },
             output: {
               // Output file into public directory which is included in the build output.
               file: "public/dependencies.json",
               template(dependencies) {
                 return JSON.stringify(dependencies);
-              }
-            }
-          }
-        }) as PluginOption);
+              },
+            },
+          },
+        }) as PluginOption,
+      );
     });
-  }
+  },
 });
