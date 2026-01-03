@@ -72,6 +72,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
+    "@nuxt/eslint",
   ],
   licenseModule: {
     allowedLicenses: ["MIT", "Apache-2.0"],

@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Composer } from "vue-i18n";
+import type { Composer } from "vue-i18n";
 const i18n: Composer = useI18n();
 
 // As nuxt can't fetch data from the public dir during SSR, the request can only be made on client side (see also nuxt/nuxt#13857).
