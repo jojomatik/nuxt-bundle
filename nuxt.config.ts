@@ -21,6 +21,10 @@ export function getLocales(): LocaleObject<GeneratedLocale>[] {
   });
 }
 
+const isDevServer =
+  process.argv.some((arg) => arg.endsWith("nuxi")) &&
+  process.argv.includes("dev");
+
 export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
@@ -74,6 +78,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
     "@nuxt/eslint",
+    "@nuxtjs/storybook",
   ],
   licenseModule: {
     allowedLicenses: ["MIT", "Apache-2.0"],
@@ -83,6 +88,9 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     restructureDir: ".",
     langDir: "locales",
+  },
+  storybook: {
+    enabled: !isDevServer,
   },
   hooks: {
     "nitro:build:before": () => {
