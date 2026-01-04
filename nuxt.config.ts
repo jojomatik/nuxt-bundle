@@ -1,8 +1,8 @@
 import * as fs from "fs";
 import chalk from "chalk";
-import vuetify from "vite-plugin-vuetify";
 import type { LocaleObject } from "@nuxtjs/i18n";
 import type { GeneratedLocale } from "@intlify/core-base";
+import vuetifyOptions from "./vuetify-options";
 
 /**
  * Returns all locales with their corresponding file names from `./locales`.
@@ -79,6 +79,7 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
     "@nuxt/eslint",
     "@nuxtjs/storybook",
+    "vuetify-nuxt-module",
   ],
   licenseModule: {
     allowedLicenses: ["MIT", "Apache-2.0"],
@@ -88,6 +89,9 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     restructureDir: ".",
     langDir: "locales",
+  },
+  vuetify: {
+    vuetifyOptions,
   },
   storybook: {
     enabled: !isDevServer,
@@ -101,15 +105,6 @@ export default defineNuxtConfig({
       });
       console.log(chalk.green("√"), "Copied fonts to " + fontsDir);
     },
-  },
-  vite: {
-    define: {
-      "process.env.DEBUG": "false",
-    },
-    ssr: {
-      noExternal: ["vuetify"],
-    },
-    plugins: [vuetify()],
   },
   nitro: {
     compressPublicAssets: true,
