@@ -23,7 +23,8 @@
     "modules",
     "nuxt.config.ts",
     "package.json",
-    "README.md"
+    "README.md",
+    "vuetify-options.ts"
   ],
   "main": "nuxt.config.ts",
   "dependencies": {
