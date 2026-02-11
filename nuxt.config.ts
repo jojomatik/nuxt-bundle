@@ -37,6 +37,11 @@ export default defineNuxtConfig({
         // Favicon generated with https://realfavicongenerator.net/
         {
           rel: "icon",
+          type: "image/vnd.microsoft.icon",
+          href: "/assets/favicon/favicon.ico",
+        },
+        {
+          rel: "icon",
           type: "image/png",
           sizes: "32x32",
           href: "/assets/favicon/favicon-32x32.png",
