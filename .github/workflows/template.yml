@@ -6,7 +6,7 @@ jobs:
     name: Build template
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with: 
           repository: jojomatik/nuxt-3-base
       - uses: actions/setup-node@v4
@@ -25,7 +25,7 @@ jobs:
     name: Deploy template
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with: 
           repository: jojomatik/nuxt-3-base
       - uses: actions/setup-node@v4
