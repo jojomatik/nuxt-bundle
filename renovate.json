@@ -4,6 +4,7 @@
     "config:recommended",
     ":semanticCommitTypeAll(build)"
   ],
+  "labels": ["type:build", "scope:deps"], 
   "packageRules": [
     {
       "matchPackageNames": ["@crystal-creations/crystal-components"],
@@ -11,7 +12,8 @@
     },
     {
       "matchDepTypes": ["devDependencies", "dev-dependencies", "dev"],
-      "semanticCommitScope": "deps-dev"
+      "semanticCommitScope": "deps-dev",
+      "labels": ["type:build", "scope:deps-dev"], 
     }
   ]
 }
