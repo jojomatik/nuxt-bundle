@@ -8,6 +8,10 @@
     {
       "matchPackageNames": ["@crystal-creations/crystal-components"],
       "followTag": "beta"
+    },
+    {
+      "matchDepTypes": ["devDependencies", "dev-dependencies", "dev"],
+      "semanticCommitScope": "deps-dev"
     }
   ]
 }
