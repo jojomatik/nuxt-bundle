@@ -41,7 +41,7 @@
     "@storybook/addon-links": "9.1.17",
     "@storybook/addon-docs": "9.1.17",
     "@types/node": "24.10.4",
-    "chromatic": "13.3.4",
+    "chromatic": "13.3.5",
     "conventional-changelog-conventionalcommits": "9.1.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.4",
