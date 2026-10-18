@@ -3,5 +3,11 @@
   "extends": [
     "config:recommended",
     ":semanticCommitTypeAll(build)"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["@crystal-creations/crystal-components"],
+      "followTag": "beta"
+    }
   ]
 }
