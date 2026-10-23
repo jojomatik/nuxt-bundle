@@ -32,7 +32,7 @@
     "@fontsource/roboto": "5.2.9",
     "@mdi/js": "7.4.47",
     "@nuxt/eslint": "1.12.1",
-    "@nuxt/image": "2.0.0",
+    "@nuxt/image": "2.2.0",
     "@nuxtjs/i18n": "10.2.1",
     "@nuxtjs/seo": "3.3.0",
     "@nuxtjs/storybook": "9.0.1",
