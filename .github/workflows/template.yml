@@ -18,6 +18,8 @@ jobs:
         run: NODE_OPTIONS="--max_old_space_size=4096" yarn add ${{ github.repository }}#${{ github.ref }}
       - name: Build
         run: NODE_OPTIONS="--max_old_space_size=4096" yarn build
+      - name: Install ESLint Prettier plugin
+        run: yarn add --dev eslint-plugin-prettier@5.5.7
       - name: Lint
         run: yarn lint
 
