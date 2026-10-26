@@ -73,3 +73,23 @@ test("allows an override callback to supply a license only when missing", () => 
     [{ name: "socket.io-client", license: "GPL-3.0" }],
   );
 });
+
+test("normalizes null license metadata before invoking an override callback", () => {
+  let callbackLicense: string | undefined = "not called";
+  const licenseOverrides = {
+    "socket.io-client": (license: string | undefined) => {
+      callbackLicense = license;
+      return license || "MIT";
+    },
+  };
+
+  assert.deepEqual(
+    validateDependencyLicense(
+      { name: "socket.io-client", license: null },
+      licenseOverrides,
+      ["MIT"],
+    ),
+    { license: "MIT", isAllowed: true },
+  );
+  assert.equal(callbackLicense, undefined);
+});

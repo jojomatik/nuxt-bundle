@@ -1,6 +1,6 @@
 type LicenseDependency = {
   name: string;
-  license?: string;
+  license?: string | null;
 };
 
 export type LicenseOverride =
@@ -11,14 +11,15 @@ function resolveLicense(
   dependency: LicenseDependency,
   licenseOverrides: Record<string, LicenseOverride>,
 ) {
+  const originalLicense = dependency.license ?? undefined;
   const override = licenseOverrides[dependency.name];
 
   if (!Object.hasOwn(licenseOverrides, dependency.name)) {
-    return dependency.license;
+    return originalLicense;
   }
 
   return typeof override === "function"
-    ? override(dependency.license)
+    ? override(originalLicense)
     : override;
 }
 
