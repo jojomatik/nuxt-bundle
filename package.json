@@ -61,7 +61,7 @@
     "vuetify-nuxt-module": "0.19.5"
   },
   "devDependencies": {
-    "eslint": "9.39.2",
+    "eslint": "9.39.5",
     "nuxt": "4.5.1",
     "vite": "7.3.5",
     "vue": "3.5.26"
