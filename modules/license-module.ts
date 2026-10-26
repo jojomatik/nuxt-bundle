@@ -1,5 +1,6 @@
 import { addVitePlugin, defineNuxtModule, useLogger } from "nuxt/kit";
 import license from "rollup-plugin-license";
+import { validateDependencyLicense } from "./license-validation";
 
 const moduleKey = "@jojomatik/nuxt-bundle/license-module";
 const envKey = "ALLOWED_LICENCES";
@@ -18,9 +19,6 @@ export default defineNuxtModule({
           includePrivate: false,
           allow: {
             test: (dependency) => {
-              // Return false for unlicensed dependencies.
-              if (!dependency.license) return false;
-
               // Load allowed licenses from environment-variable
               const allowedLicensesFromEnv = process.env[envKey]
                 ?.split(",")
@@ -31,18 +29,24 @@ export default defineNuxtModule({
               const allowedLicenses =
                 allowedLicensesFromEnv ?? options.allowedLicenses;
 
-              const isLicenseAllowed = allowedLicenses.includes(
-                dependency.license,
+              const validation = validateDependencyLicense(
+                dependency,
+                options.licenseOverrides ?? {},
+                allowedLicenses,
               );
+              dependency.license = validation.license;
 
-              if (!isLicenseAllowed) {
+              // Return false for unlicensed dependencies.
+              if (!validation.license) return false;
+
+              if (!validation.isAllowed) {
                 logger.error(
-                  `Dependency "${dependency.name}" has a license (${dependency.license}) that is not the list of allowed licenses (${allowedLicenses.join(", ")}).`,
+                  `Dependency "${dependency.name}" has a license (${validation.license}) that is not the list of allowed licenses (${allowedLicenses.join(", ")}).`,
                 );
 
                 const requiredLicenses = [
                   ...allowedLicenses,
-                  dependency.license,
+                  validation.license,
                 ];
 
                 const configContent = JSON.stringify(
@@ -69,7 +73,7 @@ export default defineNuxtModule({
                 );
               }
 
-              return isLicenseAllowed;
+              return validation.isAllowed;
             },
             failOnUnlicensed: true,
             failOnViolation: true,

@@ -15,6 +15,7 @@
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
     "lint": "eslint . --max-warnings 0",
+    "test": "node --experimental-strip-types --test modules/__tests__/*.test.ts",
     "semantic-release": "semantic-release"
   },
   "files": [

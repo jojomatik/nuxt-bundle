@@ -5,3 +5,18 @@ A bundle of commonly used nuxt dependencies and configuration.
 
 ## Licensing
 This project is licensed under the MIT License (MIT). See also [`LICENSE`](LICENSE).
+
+Use `licenseModule.licenseOverrides` to provide license metadata for dependencies whose manifests omit it. The override is still checked against `licenseModule.allowedLicenses`:
+
+```ts
+export default defineNuxtConfig({
+  extends: "@jojomatik/nuxt-bundle",
+  licenseModule: {
+    licenseOverrides: {
+      "socket.io-client": "MIT",
+    },
+  },
+});
+```
+
+Dependencies without an override still fail validation when their license metadata is missing.
