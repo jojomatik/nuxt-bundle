@@ -37,12 +37,6 @@ export function createLicensePluginOptions(
             .map((license) => license.trim());
           const allowedLicenses =
             allowedLicensesFromEnv ?? options.allowedLicenses;
-          const allowedLicenseNames = allowedLicenses.flatMap(
-            (allowedLicense) =>
-              typeof allowedLicense === "string"
-                ? [allowedLicense]
-                : Object.keys(allowedLicense),
-          );
           const dependencyAllowedLicenses = allowedLicenses.flatMap(
             (allowedLicense) => {
               if (typeof allowedLicense === "string") return [allowedLicense];
@@ -65,7 +59,7 @@ export function createLicensePluginOptions(
 
           if (!validation.isAllowed) {
             logger.error(
-              `Dependency "${dependency.name}" has a license (${validation.license}) that is not the list of allowed licenses (${allowedLicenseNames.join(", ")}).`,
+              `Dependency "${dependency.name}" has a license (${validation.license}) that is not in the dependency-specific list of allowed licenses (${dependencyAllowedLicenses.join(", ")}).`,
             );
 
             const requiredLicenses = [
