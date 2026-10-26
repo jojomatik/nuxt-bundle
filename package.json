@@ -50,7 +50,7 @@
     "eslint-plugin-storybook": "9.1.21",
     "eslint-plugin-vue": "10.11.1",
     "prettier": "3.7.4",
-    "rollup": "4.59.0",
+    "rollup": "4.65.0",
     "rollup-plugin-license": "3.6.0",
     "sass": "1.97.1",
     "semantic-release": "25.0.9",
