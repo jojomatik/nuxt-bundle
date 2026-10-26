@@ -3,10 +3,10 @@
 
 A bundle of commonly used nuxt dependencies and configuration.
 
-## Licensing
-This project is licensed under the MIT License (MIT). See also [`LICENSE`](LICENSE).
+## Usage
+Extend your Nuxt configuration with `@jojomatik/nuxt-bundle` to use its shared dependencies and configuration. Dependency licenses are validated during builds.
 
-Use `licenseModule.licenseOverrides` to provide license metadata for dependencies whose manifests omit it. The override is still checked against `licenseModule.allowedLicenses`:
+Use `licenseModule.licenseOverrides` to provide license metadata for dependencies whose manifests omit it. Overrides are still checked against `licenseModule.allowedLicenses`:
 
 ```ts
 export default defineNuxtConfig({
@@ -20,3 +20,6 @@ export default defineNuxtConfig({
 ```
 
 Dependencies without an override still fail validation when their license metadata is missing.
+
+## Licensing
+This project is licensed under the MIT License (MIT). See also [`LICENSE`](LICENSE).
