@@ -61,6 +61,44 @@
       "ignoreUnstable": false,
       "separateMultipleMajor": true,
     },
+    // Extend existing preset groups with their integrations.
+    {
+      "matchDatasources": ["npm"],
+      "matchPackageNames": ["vue", "vue-router"],
+      "groupName": "vue",
+      "separateMultipleMajor": false,
+    },
+    {
+      "matchDatasources": ["npm"],
+      "matchPackageNames": [
+        "storybook",
+        "@storybook/*",
+        "@nuxtjs/storybook",
+        "eslint-plugin-storybook",
+      ],
+      "groupName": "storybook",
+      "separateMultipleMajor": false,
+    },
+    {
+      "matchDatasources": ["npm"],
+      "matchPackageNames": ["vuetify", "vuetify-nuxt-module"],
+      "groupName": "vuetify",
+      "separateMultipleMajor": false,
+    },
+    {
+      "matchDatasources": ["npm"],
+      // eslint-plugin-storybook stays in the storybook group, which takes precedence.
+      "matchPackageNames": [
+        "eslint",
+        "@nuxt/eslint",
+        "eslint-plugin-vue",
+        "eslint-plugin-prettier",
+        "eslint-config-prettier",
+        "prettier",
+      ],
+      "groupName": "linting",
+      "separateMultipleMajor": false,
+    },
   ],
   "lockFileMaintenance": {
     "enabled": true,
