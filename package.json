@@ -15,10 +15,12 @@
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
     "lint": "eslint . --max-warnings 0",
+    "test": "node --experimental-strip-types --test lib/__tests__/*.test.ts",
     "semantic-release": "semantic-release"
   },
   "files": [
     "app",
+    "lib",
     "locales",
     "modules",
     "nuxt.config.ts",
