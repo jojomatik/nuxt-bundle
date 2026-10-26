@@ -52,7 +52,7 @@
     "prettier": "3.7.4",
     "rollup": "4.65.0",
     "rollup-plugin-license": "3.7.1",
-    "sass": "1.97.1",
+    "sass": "1.106.1",
     "semantic-release": "25.0.9",
     "storybook": "9.1.21",
     "typescript": "5.9.3",
