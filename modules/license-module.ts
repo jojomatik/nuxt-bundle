@@ -3,7 +3,7 @@ import license from "rollup-plugin-license";
 import {
   applyLicenseOverrides,
   validateDependencyLicense,
-} from "./license-validation";
+} from "../lib/license-validation";
 
 const moduleKey = "@jojomatik/nuxt-bundle/license-module";
 const envKey = "ALLOWED_LICENCES";
