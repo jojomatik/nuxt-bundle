@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { validateDependencyLicense } from "../license-validation.ts";
+import {
+  applyLicenseOverrides,
+  validateDependencyLicense,
+} from "../license-validation.ts";
 
 test("applies a package license override before validation", () => {
   assert.deepEqual(
@@ -29,4 +32,14 @@ test("still rejects an overridden license outside the allow-list", () => {
     ),
     { license: "MIT", isAllowed: false },
   );
+});
+
+test("applies overrides to generated metadata without mutating dependencies", () => {
+  const dependency = { name: "socket.io-client" };
+
+  assert.deepEqual(
+    applyLicenseOverrides([dependency], { "socket.io-client": "MIT" }),
+    [{ name: "socket.io-client", license: "MIT" }],
+  );
+  assert.equal(dependency.license, undefined);
 });

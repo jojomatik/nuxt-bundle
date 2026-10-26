@@ -1,6 +1,9 @@
 import { addVitePlugin, defineNuxtModule, useLogger } from "nuxt/kit";
 import license from "rollup-plugin-license";
-import { validateDependencyLicense } from "./license-validation";
+import {
+  applyLicenseOverrides,
+  validateDependencyLicense,
+} from "./license-validation";
 
 const moduleKey = "@jojomatik/nuxt-bundle/license-module";
 const envKey = "ALLOWED_LICENCES";
@@ -34,7 +37,6 @@ export default defineNuxtModule({
                 options.licenseOverrides ?? {},
                 allowedLicenses,
               );
-              dependency.license = validation.license;
 
               // Return false for unlicensed dependencies.
               if (!validation.license) return false;
@@ -82,7 +84,12 @@ export default defineNuxtModule({
             // Output file into public directory which is included in the build output.
             file: "public/dependencies.json",
             template(dependencies) {
-              return JSON.stringify(dependencies);
+              return JSON.stringify(
+                applyLicenseOverrides(
+                  dependencies,
+                  options.licenseOverrides ?? {},
+                ),
+              );
             },
           },
         },
