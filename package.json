@@ -48,7 +48,7 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.7",
     "eslint-plugin-storybook": "9.1.21",
-    "eslint-plugin-vue": "10.6.2",
+    "eslint-plugin-vue": "10.11.1",
     "prettier": "3.7.4",
     "rollup": "4.59.0",
     "rollup-plugin-license": "3.6.0",
