@@ -51,11 +51,9 @@ test("allows an override callback to supply a license only when missing", () => 
   };
 
   assert.deepEqual(
-    validateDependencyLicense(
-      { name: "socket.io-client" },
-      licenseOverrides,
-      ["MIT"],
-    ),
+    validateDependencyLicense({ name: "socket.io-client" }, licenseOverrides, [
+      "MIT",
+    ]),
     { license: "MIT", isAllowed: true },
   );
   assert.deepEqual(

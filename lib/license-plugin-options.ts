@@ -49,10 +49,7 @@ export function createLicensePluginOptions(
               `Dependency "${dependency.name}" has a license (${validation.license}) that is not the list of allowed licenses (${allowedLicenses.join(", ")}).`,
             );
 
-            const requiredLicenses = [
-              ...allowedLicenses,
-              validation.license,
-            ];
+            const requiredLicenses = [...allowedLicenses, validation.license];
             const configContent = JSON.stringify(
               {
                 extends: "@jojomatik/nuxt-bundle",
@@ -85,10 +82,7 @@ export function createLicensePluginOptions(
         file: "public/dependencies.json",
         template(dependencies: LicenseDependency[]) {
           return JSON.stringify(
-            applyLicenseOverrides(
-              dependencies,
-              options.licenseOverrides ?? {},
-            ),
+            applyLicenseOverrides(dependencies, options.licenseOverrides ?? {}),
           );
         },
       },
