@@ -18,9 +18,7 @@ function resolveLicense(
     return originalLicense;
   }
 
-  return typeof override === "function"
-    ? override(originalLicense)
-    : override;
+  return typeof override === "function" ? override(originalLicense) : override;
 }
 
 export function validateDependencyLicense(
