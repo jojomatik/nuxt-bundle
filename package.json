@@ -34,7 +34,7 @@
     "@fontsource/roboto": "5.3.0",
     "@mdi/js": "7.4.47",
     "@nuxt/eslint": "1.12.1",
-    "@nuxt/image": "2.0.0",
+    "@nuxt/image": "2.2.0",
     "@nuxtjs/i18n": "10.2.1",
     "@nuxtjs/seo": "5.3.16",
     "@nuxtjs/storybook": "9.0.1",
