@@ -3,18 +3,28 @@ type LicenseDependency = {
   license?: string;
 };
 
+export type LicenseOverride =
+  | string
+  | ((license: string | undefined) => string | undefined);
+
 function resolveLicense(
   dependency: LicenseDependency,
-  licenseOverrides: Record<string, string>,
+  licenseOverrides: Record<string, LicenseOverride>,
 ) {
-  return Object.hasOwn(licenseOverrides, dependency.name)
-    ? licenseOverrides[dependency.name]
-    : dependency.license;
+  const override = licenseOverrides[dependency.name];
+
+  if (!Object.hasOwn(licenseOverrides, dependency.name)) {
+    return dependency.license;
+  }
+
+  return typeof override === "function"
+    ? override(dependency.license)
+    : override;
 }
 
 export function validateDependencyLicense(
   dependency: LicenseDependency,
-  licenseOverrides: Record<string, string>,
+  licenseOverrides: Record<string, LicenseOverride>,
   allowedLicenses: string[],
 ) {
   const license = resolveLicense(dependency, licenseOverrides);
@@ -27,7 +37,7 @@ export function validateDependencyLicense(
 
 export function applyLicenseOverrides(
   dependencies: LicenseDependency[],
-  licenseOverrides: Record<string, string>,
+  licenseOverrides: Record<string, LicenseOverride>,
 ) {
   return dependencies.map((dependency) => ({
     ...dependency,

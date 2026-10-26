@@ -20,6 +20,13 @@ export default defineNuxtConfig({
 ```
 
 Dependencies without an override still fail validation when their license metadata is missing.
+An override can also be a function that receives the license from the package metadata. For example, to supply MIT only when the license is missing:
+
+```ts
+licenseOverrides: {
+  "socket.io-client": (license) => license || "MIT",
+}
+```
 
 ## Licensing
 This project is licensed under the MIT License (MIT). See also [`LICENSE`](LICENSE).

@@ -43,3 +43,33 @@ test("applies overrides to generated metadata without mutating dependencies", ()
   );
   assert.equal(dependency.license, undefined);
 });
+
+test("allows an override callback to supply a license only when missing", () => {
+  const licenseOverrides = {
+    "socket.io-client": (license: string | undefined) => license || "MIT",
+  };
+
+  assert.deepEqual(
+    validateDependencyLicense(
+      { name: "socket.io-client" },
+      licenseOverrides,
+      ["MIT"],
+    ),
+    { license: "MIT", isAllowed: true },
+  );
+  assert.deepEqual(
+    validateDependencyLicense(
+      { name: "socket.io-client", license: "GPL-3.0" },
+      licenseOverrides,
+      ["MIT"],
+    ),
+    { license: "GPL-3.0", isAllowed: false },
+  );
+  assert.deepEqual(
+    applyLicenseOverrides(
+      [{ name: "socket.io-client", license: "GPL-3.0" }],
+      licenseOverrides,
+    ),
+    [{ name: "socket.io-client", license: "GPL-3.0" }],
+  );
+});
