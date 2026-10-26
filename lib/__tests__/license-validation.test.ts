@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { createLicensePluginOptions } from "../license-plugin-options.ts";
 import {
   applyLicenseOverrides,
   validateDependencyLicense,
@@ -92,4 +93,26 @@ test("normalizes null license metadata before invoking an override callback", ()
     { license: "MIT", isAllowed: true },
   );
   assert.equal(callbackLicense, undefined);
+});
+
+test("applies license overrides in configured plugin callbacks", () => {
+  const pluginOptions = createLicensePluginOptions(
+    {
+      allowedLicenses: ["MIT"],
+      licenseOverrides: {
+        "socket.io-client": (license) => license ?? "MIT",
+      },
+    },
+    {
+      error: assert.fail,
+      info: assert.fail,
+    },
+  );
+  const dependency = { name: "socket.io-client", license: null };
+
+  assert.equal(pluginOptions.thirdParty.allow.test(dependency), true);
+  assert.deepEqual(
+    JSON.parse(pluginOptions.thirdParty.output.template([dependency])),
+    [{ name: "socket.io-client", license: "MIT" }],
+  );
 });
