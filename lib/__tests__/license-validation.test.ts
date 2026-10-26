@@ -3,7 +3,7 @@ import { test } from "node:test";
 import {
   applyLicenseOverrides,
   validateDependencyLicense,
-} from "../../lib/license-validation.ts";
+} from "../license-validation.ts";
 
 test("applies a package license override before validation", () => {
   assert.deepEqual(
