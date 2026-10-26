@@ -28,5 +28,16 @@ licenseOverrides: {
 }
 ```
 
+Use an object in `allowedLicenses` to allow a license only for specific dependencies:
+
+```ts
+licenseModule: {
+  allowedLicenses: [
+    "MIT",
+    { "SEE LICENSE IN LICENSE.md": ["apexcharts", "vue-apexcharts"] },
+  ],
+}
+```
+
 ## Licensing
 This project is licensed under the MIT License (MIT). See also [`LICENSE`](LICENSE).

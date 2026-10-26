@@ -116,3 +116,47 @@ test("applies license overrides in configured plugin callbacks", () => {
     [{ name: "socket.io-client", license: "MIT" }],
   );
 });
+
+test("allows a license only for its configured dependencies", () => {
+  const pluginOptions = createLicensePluginOptions(
+    {
+      allowedLicenses: [
+        "MIT",
+        { "SEE LICENSE IN LICENSE.md": ["apexcharts", "vue-apexcharts"] },
+      ],
+    },
+    {
+      error: () => {},
+      info: () => {},
+    },
+  );
+
+  const originalConsoleLog = console.log;
+  console.log = () => {};
+
+  try {
+    assert.equal(
+      pluginOptions.thirdParty.allow.test({
+        name: "apexcharts",
+        license: "SEE LICENSE IN LICENSE.md",
+      }),
+      true,
+    );
+    assert.equal(
+      pluginOptions.thirdParty.allow.test({
+        name: "vue-apexcharts",
+        license: "SEE LICENSE IN LICENSE.md",
+      }),
+      true,
+    );
+    assert.equal(
+      pluginOptions.thirdParty.allow.test({
+        name: "another-package",
+        license: "SEE LICENSE IN LICENSE.md",
+      }),
+      false,
+    );
+  } finally {
+    console.log = originalConsoleLog;
+  }
+});

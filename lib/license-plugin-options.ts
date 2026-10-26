@@ -4,8 +4,10 @@ import {
   type LicenseOverride,
 } from "./license-validation.ts";
 
+type AllowedLicense = string | Record<string, string[]>;
+
 type LicenseModuleOptions = {
-  allowedLicenses: string[];
+  allowedLicenses: AllowedLicense[];
   licenseOverrides?: Record<string, LicenseOverride>;
 };
 
@@ -35,18 +37,35 @@ export function createLicensePluginOptions(
             .map((license) => license.trim());
           const allowedLicenses =
             allowedLicensesFromEnv ?? options.allowedLicenses;
+          const allowedLicenseNames = allowedLicenses.flatMap(
+            (allowedLicense) =>
+              typeof allowedLicense === "string"
+                ? [allowedLicense]
+                : Object.keys(allowedLicense),
+          );
+          const dependencyAllowedLicenses = allowedLicenses.flatMap(
+            (allowedLicense) => {
+              if (typeof allowedLicense === "string") return [allowedLicense];
+
+              return Object.entries(allowedLicense)
+                .filter(([, dependencies]) =>
+                  dependencies.includes(dependency.name),
+                )
+                .map(([license]) => license);
+            },
+          );
           const overrides = options.licenseOverrides ?? {};
           const validation = validateDependencyLicense(
             dependency,
             overrides,
-            allowedLicenses,
+            dependencyAllowedLicenses,
           );
 
           if (!validation.license) return false;
 
           if (!validation.isAllowed) {
             logger.error(
-              `Dependency "${dependency.name}" has a license (${validation.license}) that is not the list of allowed licenses (${allowedLicenses.join(", ")}).`,
+              `Dependency "${dependency.name}" has a license (${validation.license}) that is not the list of allowed licenses (${allowedLicenseNames.join(", ")}).`,
             );
 
             const requiredLicenses = [
