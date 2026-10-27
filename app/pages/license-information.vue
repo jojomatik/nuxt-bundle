@@ -68,8 +68,8 @@ function softwareInfo() {
         // 1. Remove `[...]github.com` prefix with protocol etc., if present.
         // 2. Remove `.git` suffix, if present.
         const repositoryCoordinates = repositoryLink
-          .replace(/.+?(github.com\/)/, "")
-          .replace(".git", "");
+          .replace(/^(?:.*?github\.com\/)?/, "")
+          .replace(/\.git$/, "");
 
         // 3. Prepend `https://github.com/`.
         repositoryLink = "https://github.com/" + repositoryCoordinates;

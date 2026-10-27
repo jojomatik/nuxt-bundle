@@ -131,6 +131,8 @@ describe("license information page", () => {
       "git+https://github.com/owner/repo.git",
       "https://github.com/owner/repo",
       "git://github.com/owner/repo.git",
+      "github.com/owner/repo.git",
+      "https://github.com/owner/repo.git-extra",
     ];
     const wrapper = await render(
       urls.map((url, index) =>
@@ -138,14 +140,18 @@ describe("license information page", () => {
       ),
     );
 
-    expect(cards(wrapper).map((card) => card.repositoryLink)).toEqual(
-      urls.map(() => "https://github.com/owner/repo"),
-    );
+    expect(cards(wrapper).map((card) => card.repositoryLink)).toEqual([
+      "https://github.com/owner/repo",
+      "https://github.com/owner/repo",
+      "https://github.com/owner/repo",
+      "https://github.com/owner/repo",
+      "https://github.com/owner/repo.git-extra",
+    ]);
   });
 
   test("supports repositories given as plain string", async () => {
     const wrapper = await render([
-      dependency({ repository: "https://github.com/owner/repo" }),
+      dependency({ repository: "github.com/owner/repo.git" }),
     ]);
 
     expect(cards(wrapper)[0].repositoryLink).toBe(
@@ -157,7 +163,7 @@ describe("license information page", () => {
     const wrapper = await render([
       dependency({
         author: null,
-        repository: { url: "https://github.com/owner/repo.git" },
+        repository: { url: "github.com/owner/repo.git" },
       }),
     ]);
 
