@@ -39,7 +39,7 @@
     "@nuxtjs/seo": "5.3.16",
     "@nuxtjs/storybook": "10.0.3",
     "@semantic-release/exec": "7.1.0",
-    "@semantic-release/git": "10.0.1",
+    "@semantic-release/git": "11.0.1",
     "@storybook/addon-links": "10.6.3",
     "@storybook/addon-docs": "10.6.3",
     "@types/node": "24.19.2",
