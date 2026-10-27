@@ -2,7 +2,7 @@
 import { flushPromises, mount } from "@vue/test-utils";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { defineComponent, h, ref, Suspense } from "vue";
-import LicenseInformation from "../app/pages/license-information.vue";
+import LicenseInformation from "../../../app/pages/license-information.vue";
 
 type Dependency = {
   name: string;

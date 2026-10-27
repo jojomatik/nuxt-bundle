@@ -2,7 +2,7 @@
 import { mount } from "@vue/test-utils";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { onMounted } from "vue";
-import ErrorPage from "../app/error.vue";
+import ErrorPage from "../../app/error.vue";
 
 const translations: Record<string, string> = {
   "nuxt-bundle.error.404.title": "404 title",

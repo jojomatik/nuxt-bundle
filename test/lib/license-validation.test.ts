@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import {
   applyLicenseOverrides,
   validateDependencyLicense,
-} from "../lib/license-validation.ts";
+} from "../../lib/license-validation.ts";
 
 describe("validateDependencyLicense", () => {
   test("applies a package license override before validation", () => {

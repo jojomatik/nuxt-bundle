@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
-import { createLicensePluginOptions } from "../lib/license-plugin-options.ts";
+import { createLicensePluginOptions } from "../../lib/license-plugin-options.ts";
 
 const createLogger = () => ({ error: vi.fn(), info: vi.fn() });
 

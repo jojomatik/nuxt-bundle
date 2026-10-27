@@ -13,7 +13,7 @@ vi.mock("nuxt/kit", () => ({
 }));
 vi.mock("rollup-plugin-license", () => ({ default: license }));
 
-const licenseModule = (await import("../modules/license-module.ts")).default;
+const licenseModule = (await import("../../modules/license-module.ts")).default;
 
 describe("license module", () => {
   beforeEach(() => {
