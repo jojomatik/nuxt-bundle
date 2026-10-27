@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -30,12 +31,19 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
+      - name: Prepare Nuxt
+        run: yarn prepare
       - name: Test
         run: yarn test
       - name: Build
         run: NODE_OPTIONS="--max_old_space_size=4096" yarn build
       - name: Lint
         run: yarn lint
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
+        with:
+          files: coverage/lcov.info
+          use_oidc: true
 
   semantic-release:
     if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta' }}

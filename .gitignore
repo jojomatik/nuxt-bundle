@@ -9,3 +9,4 @@ public/dependencies.json
 storybook-static
 .storybook/imports.d.ts
 yarn.lock
+coverage
