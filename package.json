@@ -61,13 +61,13 @@
     "vuetify-nuxt-module": "0.19.5"
   },
   "devDependencies": {
-    "eslint": "9.39.5",
+    "eslint": "10.13.0",
     "nuxt": "4.6.2",
     "vite": "8.3.5",
     "vue": "3.5.44"
   },
   "peerDependencies": {
-    "eslint": "^9.39.2",
+    "eslint": "^9.39.2 || ^10.0.0",
     "nuxt": "^4.2.2",
     "vite": "^7.3.0 || ^8.0.0",
     "vue": "^3.5.26"
