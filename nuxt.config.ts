@@ -87,7 +87,7 @@ export default defineNuxtConfig({
     "vuetify-nuxt-module",
   ],
   licenseModule: {
-    allowedLicenses: ["MIT", "Apache-2.0", "ISC"],
+    allowedLicenses: ["MIT", "Apache-2.0", "ISC", "OFL-1.1"],
   },
   i18n: {
     locales: getLocales(),
