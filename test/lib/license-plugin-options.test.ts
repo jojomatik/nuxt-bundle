@@ -5,6 +5,7 @@ const createLogger = () => ({ error: vi.fn(), info: vi.fn() });
 
 describe("createLicensePluginOptions", () => {
   beforeEach(() => {
+    vi.stubEnv("ALLOWED_LICENCES", undefined);
     vi.spyOn(console, "log").mockImplementation(() => {});
   });
 
