@@ -6,7 +6,13 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["text-summary", "lcov"],
-      include: ["lib/**"],
+      include: [
+        "lib/**",
+        "modules/**",
+        "app/**/*.{ts,vue}",
+        "nuxt.config.ts",
+        "vuetify-options.ts",
+      ],
     },
   },
 });
