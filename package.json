@@ -17,7 +17,7 @@
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
     "lint": "eslint . --max-warnings 0",
-    "test": "vitest run",
+    "test": "vitest run --coverage",
     "semantic-release": "semantic-release"
   },
   "files": [
@@ -66,6 +66,7 @@
     "eslint": "10.13.0",
     "nuxt": "4.6.2",
     "vite": "8.3.5",
+    "@vitest/coverage-v8": "5.0.5",
     "vitest": "5.0.5",
     "vue": "3.5.44"
   },
