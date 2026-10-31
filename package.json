@@ -59,6 +59,7 @@
     "rollup-plugin-license": "3.7.1",
     "sass": "1.106.1",
     "semantic-release": "25.0.9",
+    "sharp": "0.34.5",
     "storybook": "10.6.5",
     "typescript": "6.0.3",
     "vue-router": "5.4.0",
