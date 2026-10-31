@@ -60,7 +60,7 @@
     "typescript": "6.0.3",
     "vue-router": "5.4.0",
     "vuetify": "3.13.7",
-    "vuetify-nuxt-module": "0.19.5"
+    "vuetify-nuxt-module": "1.0.0-rc.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "6.0.10",
