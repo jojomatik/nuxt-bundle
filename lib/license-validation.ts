@@ -4,8 +4,7 @@ type LicenseDependency = {
 };
 
 export type LicenseOverride =
-  | string
-  | ((license: string | undefined) => string | undefined);
+  string | ((license: string | undefined) => string | undefined);
 
 function resolveLicense(
   dependency: LicenseDependency,
