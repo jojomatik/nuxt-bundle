@@ -1,6 +1,6 @@
-import * as fs from "fs";
-import * as os from "os";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as os from "node:os";
+import * as path from "node:path";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import sharp from "sharp";
 
@@ -15,8 +15,13 @@ vi.mock("nuxt/kit", () => ({
 }));
 
 const faviconModule = (await import("../../modules/favicon-module.ts")).default;
-const { generateFavicons, pngToIco, createManifest, getThemeColor } =
-  await import("../../modules/favicon-module.ts");
+const {
+  generateFavicons,
+  pngToIco,
+  createManifest,
+  getThemeColor,
+  trimSlashes,
+} = await import("../../modules/favicon-module.ts");
 
 const svg = fs.readFileSync(
   path.resolve(import.meta.dirname, "../../public/favicon.svg"),
@@ -97,6 +102,12 @@ describe("favicon module", () => {
     expect(m).toMatchObject({ name: "pkg", short_name: "pkg" });
     expect(m.icons[0].src).toBe("/x/android-chrome-192x192.png");
     expect(m.theme_color).toBe("#111111");
+  });
+
+  test("trims slashes", () => {
+    expect(trimSlashes("//a/b//")).toBe("a/b");
+    expect(trimSlashes("///")).toBe("");
+    expect(trimSlashes("a")).toBe("a");
   });
 
   test("reads theme colors", () => {

@@ -1,5 +1,5 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 import { defineNuxtModule, resolvePath, useLogger } from "nuxt/kit";
 import sharp from "sharp";
 
@@ -24,6 +24,15 @@ export const pngTargets = [
   { name: "android-chrome-192x192.png", size: 192 },
   { name: "android-chrome-512x512.png", size: 512 },
 ];
+
+/** Removes leading and trailing slashes without regular expressions. */
+export function trimSlashes(value: string): string {
+  let start = 0;
+  let end = value.length;
+  while (start < end && value[start] === "/") start++;
+  while (end > start && value[end - 1] === "/") end--;
+  return value.slice(start, end);
+}
 
 /** Wraps a PNG image in an ICO container. */
 export function pngToIco(png: Buffer, size: number): Buffer {
@@ -55,7 +64,7 @@ export function createManifest({
   publicPath,
 }: ManifestInput) {
   const appName = name?.trim() || "App";
-  const base = "/" + publicPath.replace(/^\/+|\/+$/g, "");
+  const base = "/" + trimSlashes(publicPath);
   return {
     name: appName,
     short_name: appName,
@@ -107,21 +116,21 @@ export async function generateFavicons(
   const svg = fs.readFileSync(source);
   const generated: string[] = [];
 
-  for (const { name, size } of pngTargets) {
-    if (skip(name)) continue;
-    const png = await sharp(svg, { density: 384 })
+  const renderPng = (size: number) =>
+    sharp(svg, { density: 384 })
       .resize(size, size, { fit: "contain", background: "#0000" })
       .png()
       .toBuffer();
-    fs.writeFileSync(path.join(outputDir, name), png);
+
+  const targets = pngTargets.filter(({ name }) => !skip(name));
+  const pngs = await Promise.all(targets.map(({ size }) => renderPng(size)));
+  targets.forEach(({ name }, index) => {
+    fs.writeFileSync(path.join(outputDir, name), pngs[index]);
     generated.push(name);
-  }
+  });
 
   if (!skip("favicon.ico")) {
-    const icoPng = await sharp(svg, { density: 384 })
-      .resize(48, 48, { fit: "contain", background: "#0000" })
-      .png()
-      .toBuffer();
+    const icoPng = await renderPng(48);
     fs.writeFileSync(path.join(outputDir, "favicon.ico"), pngToIco(icoPng, 48));
     generated.push("favicon.ico");
   }
@@ -161,7 +170,7 @@ export default defineNuxtModule<FaviconModuleOptions>({
       nuxt.options.rootDir,
       "node_modules/.cache/@jojomatik/nuxt-bundle/favicon",
     );
-    const publicPath = options.publicPath.replace(/^\/+|\/+$/g, "");
+    const publicPath = trimSlashes(options.publicPath);
     const publicDir = await resolvePath(nuxt.options.dir.public);
     const existsInSource = (name: string) =>
       fs.existsSync(path.join(publicDir, publicPath, name));
@@ -181,7 +190,9 @@ export default defineNuxtModule<FaviconModuleOptions>({
         } catch {
           // no readable package.json, use the default name
         }
-        name = name?.replace(/^@[^/]+\//, "");
+        if (name?.startsWith("@")) {
+          name = name.slice(name.indexOf("/") + 1);
+        }
         const theme = (
           nuxt.options as {
             vuetify?: { vuetifyOptions?: { theme?: ThemeLike } };
