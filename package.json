@@ -30,6 +30,7 @@
     "modules",
     "nuxt.config.ts",
     "package.json",
+    "public/favicon.svg",
     "README.md",
     "vuetify-options.ts"
   ],

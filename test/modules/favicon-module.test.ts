@@ -18,8 +18,9 @@ const faviconModule = (await import("../../modules/favicon-module.ts")).default;
 const { generateFavicons, pngToIco, createManifest, getThemeColor } =
   await import("../../modules/favicon-module.ts");
 
-const svg =
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red"/></svg>';
+const svg = fs.readFileSync(
+  path.resolve(import.meta.dirname, "../../public/favicon.svg"),
+);
 
 describe("favicon module", () => {
   let dir: string;
