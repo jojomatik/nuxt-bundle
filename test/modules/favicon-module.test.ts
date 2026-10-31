@@ -115,7 +115,10 @@ describe("favicon module", () => {
     const pub = path.join(dir, "public", "assets", "favicon");
     fs.mkdirSync(pub, { recursive: true });
     fs.writeFileSync(path.join(pub, "favicon.ico"), "custom");
-    const hooks: Record<string, (c: Record<string, unknown>) => void> = {};
+    const hooks: Record<
+      string,
+      (c: Record<string, unknown>) => void | Promise<void>
+    > = {};
     const nuxt = {
       options: {
         rootDir: dir,
@@ -127,8 +130,10 @@ describe("favicon module", () => {
           },
         },
       },
-      hook: (n: string, fn: (c: Record<string, unknown>) => void) =>
-        (hooks[n] = fn),
+      hook: (
+        n: string,
+        fn: (c: Record<string, unknown>) => void | Promise<void>,
+      ) => (hooks[n] = fn),
     };
     const setup = faviconModule.setup as (
       o: unknown,
@@ -139,7 +144,10 @@ describe("favicon module", () => {
       nuxt,
     );
 
-    const out = path.join(dir, ".nuxt", "favicon");
+    const out = path.join(
+      dir,
+      "node_modules/.cache/@jojomatik/nuxt-bundle/favicon",
+    );
     expect(fs.existsSync(path.join(out, "favicon.ico"))).toBe(false);
     expect(fs.readFileSync(path.join(pub, "favicon.ico"), "utf-8")).toBe(
       "custom",
@@ -151,7 +159,7 @@ describe("favicon module", () => {
     expect(manifest).toMatchObject({ name: "pkg", theme_color: "#123456" });
 
     const nitro: { publicAssets?: unknown[] } = {};
-    hooks["nitro:config"](nitro);
+    await hooks["nitro:config"](nitro);
     expect(nitro.publicAssets[0]).toMatchObject({
       dir: out,
       baseURL: "/assets/favicon",

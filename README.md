@@ -58,7 +58,7 @@ export default defineNuxtConfig({
 
 Generated files: `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`, `android-chrome-192x192.png`, `android-chrome-512x512.png`, `safari-pinned-tab.svg` and `site.webmanifest`.
 
-The files are written to the Nuxt build directory (not your source tree) and served from `publicPath`. A file that already exists in `public/<publicPath>/` is never generated or overridden, so you can supply your own version of any of them.
+The files are written to a cache directory under `node_modules/.cache` (not your source tree) and served from `publicPath`. A file that already exists in `public/<publicPath>/` is never generated or overridden, so you can supply your own version of any of them.
 
 The `site.webmanifest` uses the `name` from your `package.json` (without scope, default `App`) as `name` and `short_name`, and the `primary` and `background` colors of the default Vuetify theme (set via `vuetify.vuetifyOptions.theme`) as `theme_color` and `background_color` (default `#ffffff`).
 

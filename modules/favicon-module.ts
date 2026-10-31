@@ -155,52 +155,58 @@ export default defineNuxtModule<FaviconModuleOptions>({
       return;
     }
 
-    // Generated files live in the build directory, never in the source tree.
-    const outputDir = path.join(nuxt.options.buildDir, "favicon");
+    // Generated files live in a cache directory, never in the source tree.
+    // Nuxt's build directory can't be used, as it is cleaned during the build.
+    const outputDir = path.join(
+      nuxt.options.rootDir,
+      "node_modules/.cache/@jojomatik/nuxt-bundle/favicon",
+    );
     const publicPath = options.publicPath.replace(/^\/+|\/+$/g, "");
     const publicDir = await resolvePath(nuxt.options.dir.public);
     const existsInSource = (name: string) =>
       fs.existsSync(path.join(publicDir, publicPath, name));
 
-    const files = await generateFavicons(source, outputDir, existsInSource);
+    nuxt.hook("nitro:config", async (nitroConfig) => {
+      const files = await generateFavicons(source, outputDir, existsInSource);
 
-    if (!existsInSource("site.webmanifest")) {
-      let name: string | undefined;
-      try {
-        name = JSON.parse(
-          fs.readFileSync(
-            path.join(nuxt.options.rootDir, "package.json"),
-            "utf-8",
-          ),
-        ).name;
-      } catch {
-        // no readable package.json, use the default name
+      if (!existsInSource("site.webmanifest")) {
+        let name: string | undefined;
+        try {
+          name = JSON.parse(
+            fs.readFileSync(
+              path.join(nuxt.options.rootDir, "package.json"),
+              "utf-8",
+            ),
+          ).name;
+        } catch {
+          // no readable package.json, use the default name
+        }
+        name = name?.replace(/^@[^/]+\//, "");
+        const theme = (
+          nuxt.options as {
+            vuetify?: { vuetifyOptions?: { theme?: ThemeLike } };
+          }
+        ).vuetify?.vuetifyOptions?.theme;
+        const manifest = createManifest({
+          name,
+          themeColor: getThemeColor(theme, "primary"),
+          backgroundColor: getThemeColor(theme, "background"),
+          publicPath,
+        });
+        fs.writeFileSync(
+          path.join(outputDir, "site.webmanifest"),
+          JSON.stringify(manifest, null, 2),
+        );
+        files.push("site.webmanifest");
       }
-      name = name?.replace(/^@[^/]+\//, "");
-      const theme = (
-        nuxt.options as { vuetify?: { vuetifyOptions?: { theme?: ThemeLike } } }
-      ).vuetify?.vuetifyOptions?.theme;
-      const manifest = createManifest({
-        name,
-        themeColor: getThemeColor(theme, "primary"),
-        backgroundColor: getThemeColor(theme, "background"),
-        publicPath,
-      });
-      fs.writeFileSync(
-        path.join(outputDir, "site.webmanifest"),
-        JSON.stringify(manifest, null, 2),
-      );
-      files.push("site.webmanifest");
-    }
 
-    nuxt.hook("nitro:config", (nitroConfig) => {
       nitroConfig.publicAssets ||= [];
       nitroConfig.publicAssets.push({
         dir: outputDir,
         baseURL: "/" + publicPath,
         maxAge: 60 * 60 * 24 * 30,
       });
+      logger.success(`Generated ${files.length} favicon files in ${outputDir}`);
     });
-    logger.success(`Generated ${files.length} favicon files in ${outputDir}`);
   },
 });
