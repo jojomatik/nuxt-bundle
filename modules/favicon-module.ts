@@ -7,13 +7,14 @@ const moduleKey = "@jojomatik/nuxt-bundle/favicon-module";
 
 const logger = useLogger(moduleKey);
 
+/** URL path (below the app root) the files are served from. */
+export const publicPath = "assets/favicon";
+
 export interface FaviconModuleOptions {
   /** Opt-in: favicons are only generated when set to `true`. */
   enabled: boolean;
   /** Path of the source SVG, relative to the project root. */
   source: string;
-  /** URL path (below the app root) the files are served from. */
-  publicPath: string;
 }
 
 /** PNG files to generate: file name and edge length in pixels. */
@@ -151,7 +152,6 @@ export default defineNuxtModule<FaviconModuleOptions>({
   defaults: {
     enabled: false,
     source: "public/favicon.svg",
-    publicPath: "assets/favicon",
   },
   async setup(options, nuxt) {
     if (!options.enabled) {
@@ -170,7 +170,6 @@ export default defineNuxtModule<FaviconModuleOptions>({
       nuxt.options.rootDir,
       "node_modules/.cache/@jojomatik/nuxt-bundle/favicon",
     );
-    const publicPath = trimSlashes(options.publicPath);
     const publicDir = await resolvePath(nuxt.options.dir.public);
     const existsInSource = (name: string) =>
       fs.existsSync(path.join(publicDir, publicPath, name));
@@ -215,7 +214,8 @@ export default defineNuxtModule<FaviconModuleOptions>({
       nitroConfig.publicAssets.push({
         dir: outputDir,
         baseURL: "/" + publicPath,
-        maxAge: 60 * 60 * 24 * 30,
+        // Fixed file names (not versioned): always revalidate instead of caching long-term.
+        maxAge: 0,
       });
       logger.success(`Generated ${files.length} favicon files in ${outputDir}`);
     });

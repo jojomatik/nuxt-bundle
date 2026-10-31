@@ -149,10 +149,7 @@ describe("favicon module", () => {
       o: unknown,
       n: unknown,
     ) => Promise<void>;
-    await setup(
-      { enabled: true, source: "icon.svg", publicPath: "assets/favicon" },
-      nuxt,
-    );
+    await setup({ enabled: true, source: "icon.svg" }, nuxt);
 
     const nitro: { publicAssets?: unknown[] } = {};
     await hooks["nitro:config"](nitro);
@@ -174,6 +171,7 @@ describe("favicon module", () => {
     expect(nitro.publicAssets?.[0]).toMatchObject({
       dir: out,
       baseURL: "/assets/favicon",
+      maxAge: 0,
     });
   });
 
@@ -185,7 +183,7 @@ describe("favicon module", () => {
       o: unknown,
       n: unknown,
     ) => Promise<void>;
-    await setup({ enabled: false, source: "icon.svg", publicPath: "a" }, nuxt);
+    await setup({ enabled: false, source: "icon.svg" }, nuxt);
     expect(nuxt.hook).not.toHaveBeenCalled();
     expect(logger.success).not.toHaveBeenCalled();
   });
@@ -196,7 +194,7 @@ describe("favicon module", () => {
       o: unknown,
       n: unknown,
     ) => Promise<void>;
-    await setup({ enabled: true, source: "none.svg", publicPath: "a" }, nuxt);
+    await setup({ enabled: true, source: "none.svg" }, nuxt);
     expect(logger.info).toHaveBeenCalled();
     expect(nuxt.hook).not.toHaveBeenCalled();
   });
