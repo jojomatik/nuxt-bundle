@@ -42,8 +42,8 @@
     "@nuxtjs/storybook": "10.0.3",
     "@semantic-release/exec": "7.1.0",
     "@semantic-release/git": "11.0.1",
-    "@storybook/addon-links": "10.6.5",
     "@storybook/addon-docs": "10.6.5",
+    "@storybook/addon-links": "10.6.5",
     "@types/node": "24.19.2",
     "chromatic": "18.13.3",
     "conventional-changelog-conventionalcommits": "9.3.1",
@@ -63,13 +63,13 @@
     "vuetify-nuxt-module": "0.19.5"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "6.0.10",
+    "@vitest/coverage-v8": "5.0.5",
+    "@vue/test-utils": "2.5.1",
     "eslint": "10.13.0",
     "happy-dom": "21.0.4",
     "nuxt": "4.6.2",
     "vite": "8.3.5",
-    "@vitejs/plugin-vue": "6.0.10",
-    "@vitest/coverage-v8": "5.0.5",
-    "@vue/test-utils": "2.5.1",
     "vitest": "5.0.5",
     "vue": "3.5.44"
   },
