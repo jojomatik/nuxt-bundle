@@ -34,6 +34,8 @@ jobs:
         run: yarn prepare
       - name: Test
         run: yarn test
+      - name: Check release notes
+        run: yarn test:release-notes
       - name: Build
         run: NODE_OPTIONS="--max_old_space_size=4096" yarn build
       - name: Lint

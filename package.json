@@ -18,6 +18,7 @@
     "start": "node .output/server/index.mjs",
     "lint": "eslint . --max-warnings 0",
     "test": "vitest run --coverage",
+    "test:release-notes": "node scripts/check-release-notes.ts",
     "semantic-release": "semantic-release"
   },
   "files": [
