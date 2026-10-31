@@ -109,7 +109,7 @@ describe("favicon module", () => {
     expect(getThemeColor(undefined, "primary")).toBeUndefined();
   });
 
-  test("generates into the build dir without touching the source", async () => {
+  test("generates into a cache dir without touching the source", async () => {
     fs.writeFileSync(path.join(dir, "icon.svg"), svg);
     fs.writeFileSync(path.join(dir, "package.json"), '{"name":"@s/pkg"}');
     const pub = path.join(dir, "public", "assets", "favicon");
@@ -158,8 +158,6 @@ describe("favicon module", () => {
     );
     expect(manifest).toMatchObject({ name: "pkg", theme_color: "#123456" });
 
-    const nitro: { publicAssets?: unknown[] } = {};
-    await hooks["nitro:config"](nitro);
     expect(nitro.publicAssets[0]).toMatchObject({
       dir: out,
       baseURL: "/assets/favicon",
