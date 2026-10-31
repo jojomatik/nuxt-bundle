@@ -10,11 +10,12 @@ const { logger } = vi.hoisted(() => ({
 
 vi.mock("nuxt/kit", () => ({
   defineNuxtModule: (definition: unknown) => definition,
+  resolvePath: (p: string) => Promise.resolve(p),
   useLogger: () => logger,
 }));
 
 const faviconModule = (await import("../../modules/favicon-module.ts")).default;
-const { generateFavicons, pngToIco } =
+const { generateFavicons, pngToIco, createManifest, getThemeColor } =
   await import("../../modules/favicon-module.ts");
 
 const svg =
@@ -67,23 +68,100 @@ describe("favicon module", () => {
     expect(ico.subarray(22).toString()).toBe("png");
   });
 
-  test("generates on nitro:build:before and skips without source", async () => {
-    let hook: () => Promise<void> = async () => {};
-    const nuxt = {
-      options: { rootDir: dir },
-      hook: (_: string, fn: () => Promise<void>) => (hook = fn),
+  test("skips files present in the source directory", async () => {
+    fs.writeFileSync(path.join(dir, "favicon.svg"), svg);
+    const out = path.join(dir, "out");
+    const files = await generateFavicons(
+      path.join(dir, "favicon.svg"),
+      out,
+      (name) => name === "favicon.ico",
+    );
+    expect(files).not.toContain("favicon.ico");
+    expect(fs.existsSync(path.join(out, "favicon.ico"))).toBe(false);
+  });
+
+  test("creates a manifest with defaults", () => {
+    expect(createManifest({ publicPath: "assets/favicon" })).toMatchObject({
+      name: "App",
+      theme_color: "#ffffff",
+      background_color: "#ffffff",
+      display: "standalone",
+    });
+    const m = createManifest({
+      name: "pkg",
+      themeColor: "#111111",
+      backgroundColor: "#222222",
+      publicPath: "/x/",
+    });
+    expect(m).toMatchObject({ name: "pkg", short_name: "pkg" });
+    expect(m.icons[0].src).toBe("/x/android-chrome-192x192.png");
+    expect(m.theme_color).toBe("#111111");
+  });
+
+  test("reads theme colors", () => {
+    const theme = {
+      defaultTheme: "dark",
+      themes: { dark: { colors: { primary: "#abc" } } },
     };
-    const setup = faviconModule.setup as (o: unknown, n: unknown) => void;
-    const options = { source: "icon.svg", outputDir: "out" };
+    expect(getThemeColor(theme, "primary")).toBe("#abc");
+    expect(getThemeColor(theme, "background")).toBeUndefined();
+    expect(getThemeColor(undefined, "primary")).toBeUndefined();
+  });
 
-    setup(options, nuxt);
-    await hook();
-    expect(logger.info).toHaveBeenCalled();
-    expect(fs.existsSync(path.join(dir, "out"))).toBe(false);
-
+  test("generates into the build dir without touching the source", async () => {
     fs.writeFileSync(path.join(dir, "icon.svg"), svg);
-    await hook();
-    expect(fs.existsSync(path.join(dir, "out", "favicon.ico"))).toBe(true);
-    expect(logger.success).toHaveBeenCalled();
+    fs.writeFileSync(path.join(dir, "package.json"), '{"name":"@s/pkg"}');
+    const pub = path.join(dir, "public", "assets", "favicon");
+    fs.mkdirSync(pub, { recursive: true });
+    fs.writeFileSync(path.join(pub, "favicon.ico"), "custom");
+    const hooks: Record<string, (c: Record<string, unknown>) => void> = {};
+    const nuxt = {
+      options: {
+        rootDir: dir,
+        buildDir: path.join(dir, ".nuxt"),
+        dir: { public: path.join(dir, "public") },
+        vuetify: {
+          vuetifyOptions: {
+            theme: { themes: { light: { colors: { primary: "#123456" } } } },
+          },
+        },
+      },
+      hook: (n: string, fn: (c: Record<string, unknown>) => void) =>
+        (hooks[n] = fn),
+    };
+    const setup = faviconModule.setup as (
+      o: unknown,
+      n: unknown,
+    ) => Promise<void>;
+    await setup({ source: "icon.svg", publicPath: "assets/favicon" }, nuxt);
+
+    const out = path.join(dir, ".nuxt", "favicon");
+    expect(fs.existsSync(path.join(out, "favicon.ico"))).toBe(false);
+    expect(fs.readFileSync(path.join(pub, "favicon.ico"), "utf-8")).toBe(
+      "custom",
+    );
+    expect(fs.readdirSync(pub)).toEqual(["favicon.ico"]);
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(out, "site.webmanifest"), "utf-8"),
+    );
+    expect(manifest).toMatchObject({ name: "pkg", theme_color: "#123456" });
+
+    const nitro: { publicAssets?: unknown[] } = {};
+    hooks["nitro:config"](nitro);
+    expect(nitro.publicAssets[0]).toMatchObject({
+      dir: out,
+      baseURL: "/assets/favicon",
+    });
+  });
+
+  test("skips without source", async () => {
+    const nuxt = { options: { rootDir: dir }, hook: vi.fn() };
+    const setup = faviconModule.setup as (
+      o: unknown,
+      n: unknown,
+    ) => Promise<void>;
+    await setup({ source: "none.svg", publicPath: "a" }, nuxt);
+    expect(logger.info).toHaveBeenCalled();
+    expect(nuxt.hook).not.toHaveBeenCalled();
   });
 });

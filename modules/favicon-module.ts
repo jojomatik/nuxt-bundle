@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { defineNuxtModule, useLogger } from "nuxt/kit";
+import { defineNuxtModule, resolvePath, useLogger } from "nuxt/kit";
 import sharp from "sharp";
 
 const moduleKey = "@jojomatik/nuxt-bundle/favicon-module";
@@ -10,8 +10,8 @@ const logger = useLogger(moduleKey);
 export interface FaviconModuleOptions {
   /** Path of the source SVG, relative to the project root. */
   source: string;
-  /** Output directory, relative to the project root. */
-  outputDir: string;
+  /** URL path (below the app root) the files are served from. */
+  publicPath: string;
 }
 
 /** PNG files to generate: file name and edge length in pixels. */
@@ -38,6 +38,60 @@ export function pngToIco(png: Buffer, size: number): Buffer {
   return Buffer.concat([header, png]);
 }
 
+export interface ManifestInput {
+  name?: string;
+  themeColor?: string;
+  backgroundColor?: string;
+  publicPath: string;
+}
+
+/** Builds the web manifest content, falling back to sensible defaults. */
+export function createManifest({
+  name,
+  themeColor,
+  backgroundColor,
+  publicPath,
+}: ManifestInput) {
+  const appName = name?.trim() || "App";
+  const base = "/" + publicPath.replace(/^\/+|\/+$/g, "");
+  return {
+    name: appName,
+    short_name: appName,
+    icons: [
+      {
+        src: `${base}/android-chrome-192x192.png`,
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        src: `${base}/android-chrome-512x512.png`,
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+    theme_color: themeColor || "#ffffff",
+    background_color: backgroundColor || "#ffffff",
+    display: "standalone",
+  };
+}
+
+interface ThemeLike {
+  defaultTheme?: string;
+  themes?: Record<string, { colors?: Record<string, unknown> } | undefined>;
+}
+
+/** Reads a theme color of the default (or first) vuetify theme. */
+export function getThemeColor(
+  theme: ThemeLike | undefined,
+  color: string,
+): string | undefined {
+  const themes = theme?.themes ?? {};
+  const selected =
+    themes[theme?.defaultTheme ?? "light"] ?? Object.values(themes)[0];
+  const value = selected?.colors?.[color];
+  return typeof value === "string" ? value : undefined;
+}
+
 /**
  * Generates all favicon files from the single SVG source.
  * Returns the names of the generated files.
@@ -45,12 +99,14 @@ export function pngToIco(png: Buffer, size: number): Buffer {
 export async function generateFavicons(
   source: string,
   outputDir: string,
+  skip: (name: string) => boolean = () => false,
 ): Promise<string[]> {
   fs.mkdirSync(outputDir, { recursive: true });
   const svg = fs.readFileSync(source);
   const generated: string[] = [];
 
   for (const { name, size } of pngTargets) {
+    if (skip(name)) continue;
     const png = await sharp(svg, { density: 384 })
       .resize(size, size, { fit: "contain", background: "#0000" })
       .png()
@@ -59,15 +115,19 @@ export async function generateFavicons(
     generated.push(name);
   }
 
-  const icoPng = await sharp(svg, { density: 384 })
-    .resize(48, 48, { fit: "contain", background: "#0000" })
-    .png()
-    .toBuffer();
-  fs.writeFileSync(path.join(outputDir, "favicon.ico"), pngToIco(icoPng, 48));
-  generated.push("favicon.ico");
+  if (!skip("favicon.ico")) {
+    const icoPng = await sharp(svg, { density: 384 })
+      .resize(48, 48, { fit: "contain", background: "#0000" })
+      .png()
+      .toBuffer();
+    fs.writeFileSync(path.join(outputDir, "favicon.ico"), pngToIco(icoPng, 48));
+    generated.push("favicon.ico");
+  }
 
-  fs.copyFileSync(source, path.join(outputDir, "safari-pinned-tab.svg"));
-  generated.push("safari-pinned-tab.svg");
+  if (!skip("safari-pinned-tab.svg")) {
+    fs.copyFileSync(source, path.join(outputDir, "safari-pinned-tab.svg"));
+    generated.push("safari-pinned-tab.svg");
+  }
 
   return generated;
 }
@@ -79,18 +139,61 @@ export default defineNuxtModule<FaviconModuleOptions>({
   },
   defaults: {
     source: "public/favicon.svg",
-    outputDir: "public/assets/favicon",
+    publicPath: "assets/favicon",
   },
-  setup(options, nuxt) {
-    nuxt.hook("nitro:build:before", async () => {
-      const source = path.resolve(nuxt.options.rootDir, options.source);
-      if (!fs.existsSync(source)) {
-        logger.info(`No favicon source found at ${source}, skipping.`);
-        return;
+  async setup(options, nuxt) {
+    const source = path.resolve(nuxt.options.rootDir, options.source);
+    if (!fs.existsSync(source)) {
+      logger.info(`No favicon source found at ${source}, skipping.`);
+      return;
+    }
+
+    // Generated files live in the build directory, never in the source tree.
+    const outputDir = path.join(nuxt.options.buildDir, "favicon");
+    const publicPath = options.publicPath.replace(/^\/+|\/+$/g, "");
+    const publicDir = await resolvePath(nuxt.options.dir.public);
+    const existsInSource = (name: string) =>
+      fs.existsSync(path.join(publicDir, publicPath, name));
+
+    const files = await generateFavicons(source, outputDir, existsInSource);
+
+    if (!existsInSource("site.webmanifest")) {
+      let name: string | undefined;
+      try {
+        name = JSON.parse(
+          fs.readFileSync(
+            path.join(nuxt.options.rootDir, "package.json"),
+            "utf-8",
+          ),
+        ).name;
+      } catch {
+        // no readable package.json, use the default name
       }
-      const outputDir = path.resolve(nuxt.options.rootDir, options.outputDir);
-      const files = await generateFavicons(source, outputDir);
-      logger.success(`Generated ${files.length} favicon files in ${outputDir}`);
+      name = name?.replace(/^@[^/]+\//, "");
+      const theme = (
+        nuxt.options as { vuetify?: { vuetifyOptions?: { theme?: ThemeLike } } }
+      ).vuetify?.vuetifyOptions?.theme;
+      const manifest = createManifest({
+        name,
+        themeColor: getThemeColor(theme, "primary"),
+        backgroundColor: getThemeColor(theme, "background"),
+        publicPath,
+      });
+      fs.writeFileSync(
+        path.join(outputDir, "site.webmanifest"),
+        JSON.stringify(manifest, null, 2),
+      );
+      files.push("site.webmanifest");
+    }
+
+    nuxt.hook("nitro:config", (nitroConfig) => {
+      nitroConfig.publicAssets ||= [];
+      nitroConfig.publicAssets.push({
+        dir: outputDir,
+        baseURL: "/" + publicPath,
+        maxAge: 60 * 60 * 24 * 30,
+      });
     });
+    logger.success(`Generated ${files.length} favicon files in ${outputDir}`);
   },
 });
