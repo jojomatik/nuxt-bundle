@@ -8,6 +8,8 @@ const moduleKey = "@jojomatik/nuxt-bundle/favicon-module";
 const logger = useLogger(moduleKey);
 
 export interface FaviconModuleOptions {
+  /** Opt-in: favicons are only generated when set to `true`. */
+  enabled: boolean;
   /** Path of the source SVG, relative to the project root. */
   source: string;
   /** URL path (below the app root) the files are served from. */
@@ -138,10 +140,15 @@ export default defineNuxtModule<FaviconModuleOptions>({
     configKey: "faviconModule",
   },
   defaults: {
+    enabled: false,
     source: "public/favicon.svg",
     publicPath: "assets/favicon",
   },
   async setup(options, nuxt) {
+    if (!options.enabled) {
+      return;
+    }
+
     const source = path.resolve(nuxt.options.rootDir, options.source);
     if (!fs.existsSync(source)) {
       logger.info(`No favicon source found at ${source}, skipping.`);

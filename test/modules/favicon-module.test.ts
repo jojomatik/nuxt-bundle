@@ -134,7 +134,10 @@ describe("favicon module", () => {
       o: unknown,
       n: unknown,
     ) => Promise<void>;
-    await setup({ source: "icon.svg", publicPath: "assets/favicon" }, nuxt);
+    await setup(
+      { enabled: true, source: "icon.svg", publicPath: "assets/favicon" },
+      nuxt,
+    );
 
     const out = path.join(dir, ".nuxt", "favicon");
     expect(fs.existsSync(path.join(out, "favicon.ico"))).toBe(false);
@@ -155,13 +158,26 @@ describe("favicon module", () => {
     });
   });
 
+  test("is opt-in and does nothing unless enabled", async () => {
+    expect(faviconModule.defaults).toMatchObject({ enabled: false });
+    fs.writeFileSync(path.join(dir, "icon.svg"), svg);
+    const nuxt = { options: { rootDir: dir }, hook: vi.fn() };
+    const setup = faviconModule.setup as (
+      o: unknown,
+      n: unknown,
+    ) => Promise<void>;
+    await setup({ enabled: false, source: "icon.svg", publicPath: "a" }, nuxt);
+    expect(nuxt.hook).not.toHaveBeenCalled();
+    expect(logger.success).not.toHaveBeenCalled();
+  });
+
   test("skips without source", async () => {
     const nuxt = { options: { rootDir: dir }, hook: vi.fn() };
     const setup = faviconModule.setup as (
       o: unknown,
       n: unknown,
     ) => Promise<void>;
-    await setup({ source: "none.svg", publicPath: "a" }, nuxt);
+    await setup({ enabled: true, source: "none.svg", publicPath: "a" }, nuxt);
     expect(logger.info).toHaveBeenCalled();
     expect(nuxt.hook).not.toHaveBeenCalled();
   });
