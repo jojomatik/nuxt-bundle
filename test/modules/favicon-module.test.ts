@@ -100,7 +100,7 @@ describe("favicon module", () => {
       publicPath: "/x/",
     });
     expect(m).toMatchObject({ name: "pkg", short_name: "pkg" });
-    expect(m.icons[0].src).toBe("/x/android-chrome-192x192.png");
+    expect(m.icons[0].src).toBe("./android-chrome-192x192.png");
     expect(m.theme_color).toBe("#111111");
   });
 

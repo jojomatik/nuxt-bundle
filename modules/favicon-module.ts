@@ -57,15 +57,15 @@ export interface ManifestInput {
   publicPath: string;
 }
 
-/** Builds the web manifest content, falling back to sensible defaults. */
+/** Builds the web manifest content (icon URLs are relative to the manifest), falling back to sensible defaults. */
 export function createManifest({
   name,
   themeColor,
   backgroundColor,
-  publicPath,
 }: ManifestInput) {
   const appName = name?.trim() || "App";
-  const base = "/" + trimSlashes(publicPath);
+  // Icons are served next to the manifest, so resolve them relative to it.
+  const base = ".";
   return {
     name: appName,
     short_name: appName,
