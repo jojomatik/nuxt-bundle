@@ -122,7 +122,6 @@ describe("favicon module", () => {
     const nuxt = {
       options: {
         rootDir: dir,
-        buildDir: path.join(dir, ".nuxt"),
         dir: { public: path.join(dir, "public") },
         vuetify: {
           vuetifyOptions: {
@@ -144,6 +143,9 @@ describe("favicon module", () => {
       nuxt,
     );
 
+    const nitro: { publicAssets?: unknown[] } = {};
+    await hooks["nitro:config"](nitro);
+
     const out = path.join(
       dir,
       "node_modules/.cache/@jojomatik/nuxt-bundle/favicon",
@@ -158,7 +160,7 @@ describe("favicon module", () => {
     );
     expect(manifest).toMatchObject({ name: "pkg", theme_color: "#123456" });
 
-    expect(nitro.publicAssets[0]).toMatchObject({
+    expect(nitro.publicAssets?.[0]).toMatchObject({
       dir: out,
       baseURL: "/assets/favicon",
     });
