@@ -16,6 +16,8 @@
     "dev": "nuxi dev",
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
+    "storybook": "storybook dev -p 6006 --disable-telemetry",
+    "build-storybook": "storybook build --disable-telemetry",
     "lint": "eslint . --max-warnings 0",
     "test": "vitest run --coverage",
     "test:release-notes": "node scripts/check-release-notes.ts",
