@@ -7,8 +7,8 @@ const vuetifyOptions: VOptions = {
       light: {
         dark: false,
         colors: {
-          background: "#FFFFFF",
-          surface: "#FFFFFF",
+          background: "#EDEDED",
+          surface: "#FCFCFC",
           "surface-variant": "#424242",
           "on-surface-variant": "#EEEEEE",
           primary: "#004c6d",
