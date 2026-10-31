@@ -25,6 +25,8 @@ const isDevServer =
   process.argv.some((arg) => arg.endsWith("nuxi")) &&
   process.argv.includes("dev");
 
+const isStorybook = process.argv.some((arg) => arg.includes("storybook"));
+
 export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
@@ -100,6 +102,10 @@ export default defineNuxtConfig({
   },
   storybook: {
     enabled: !isDevServer,
+  },
+  // Storybook's Nuxt preset disables experimental.appManifest, which nuxt-skew-protection requires.
+  skewProtection: {
+    enabled: !isStorybook,
   },
   hooks: {
     "nitro:build:before": () => {
