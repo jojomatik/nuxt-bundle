@@ -10,7 +10,7 @@ Use `licenseModule.licenseOverrides` to provide license metadata for dependencie
 
 ```ts
 export default defineNuxtConfig({
-  extends: "@jojomatik/nuxt-bundle",
+  extends: ["@jojomatik/nuxt-bundle"],
   licenseModule: {
     licenseOverrides: {
       "socket.io-client": "MIT",
@@ -44,7 +44,7 @@ The favicon module is opt-in. When enabled, it generates all favicon files from 
 
 ```ts
 export default defineNuxtConfig({
-  extends: "@jojomatik/nuxt-bundle",
+  extends: ["@jojomatik/nuxt-bundle"],
   faviconModule: {
     enabled: true,
     // source: "public/favicon.svg",

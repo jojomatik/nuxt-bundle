@@ -65,7 +65,7 @@ export function createLicensePluginOptions(
             const requiredLicenses = [...allowedLicenses, validation.license];
             const configContent = JSON.stringify(
               {
-                extends: "@jojomatik/nuxt-bundle",
+                extends: ["@jojomatik/nuxt-bundle"],
                 licenseModule: {
                   allowedLicenses: requiredLicenses,
                 },
