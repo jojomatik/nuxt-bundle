@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --prefer-offline
       - name: Build storybook and publish to chromatic
-        uses: chromaui/action@dc6182ace06884faf1d3edf73f652a80ca6dfddc # v18.13.4
+        uses: chromaui/action@add73a4a1d7bc609b8664be286b7309707f1938d # v18.14.0
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           onlyChanged: true
