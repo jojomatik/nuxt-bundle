@@ -88,7 +88,7 @@ jobs:
       - semantic-release
     steps:
       - name: Keep `beta` up to date with `main` (fast-forward enabled)
-        uses: jojomatik/sync-branch@b89209d010e748f6d2a3945e8da8a38c8a22d9e4 # v2
+        uses: jojomatik/sync-branch@018da752bea04f9bd75647bc0728c734c578b1e2 # v2
         with:
           git_committer_name: ${{ secrets.BUMP_GIT_NAME }}
           git_committer_email: ${{ secrets.BUMP_GIT_EMAIL }}
