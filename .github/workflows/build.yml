@@ -38,6 +38,8 @@ jobs:
         run: yarn test:release-notes
       - name: Build
         run: NODE_OPTIONS="--max_old_space_size=4096" yarn build
+      - name: Check production font preload
+        run: yarn test:font-build
       - name: Lint
         run: yarn lint
       - name: Upload coverage to Codecov

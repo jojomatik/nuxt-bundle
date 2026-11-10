@@ -1,11 +1,10 @@
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vitest";
 
-const { readdirSync, cpSync } = vi.hoisted(() => ({
+const { readdirSync } = vi.hoisted(() => ({
   readdirSync: vi.fn(() => ["en.json"]),
-  cpSync: vi.fn(),
 }));
 
-vi.mock("fs", () => ({ readdirSync, cpSync }));
+vi.mock("fs", () => ({ readdirSync }));
 
 vi.stubGlobal("defineNuxtConfig", (config: unknown) => config);
 
@@ -33,14 +32,11 @@ describe("getLocales", () => {
 });
 
 describe("nuxt config", () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
   test("includes the bundled modules", () => {
     expect(config.modules).toEqual(
       expect.arrayContaining([
         "@nuxtjs/i18n",
+        "@nuxt/fonts",
         "vuetify-nuxt-module",
         "@nuxt/image",
       ]),
@@ -52,16 +48,20 @@ describe("nuxt config", () => {
     expect(config.ssr).toBe(true);
   });
 
-  test("copies the fonts before the nitro build", () => {
-    vi.spyOn(console, "log").mockImplementation(() => {});
-    const hook = config.hooks?.["nitro:build:before"] as () => void;
-
-    hook();
-
-    expect(cpSync).toHaveBeenCalledWith(
-      "node_modules/@fontsource/",
-      "public/assets/fonts/",
-      { recursive: true },
-    );
+  test("uses the locally installed Roboto with an explicit Latin preload", () => {
+    expect(config.fonts).toEqual({
+      npm: { remote: false },
+      experimental: { disableLocalFallbacks: true },
+      families: [
+        {
+          name: "Roboto",
+          provider: "npm",
+          global: true,
+          weights: [300, 400, 500, 700],
+          styles: ["normal", "italic"],
+          preload: true,
+        },
+      ],
+    });
   });
 });
