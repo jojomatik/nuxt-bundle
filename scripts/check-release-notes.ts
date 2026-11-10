@@ -1,17 +1,11 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { mkdtempSync, rmSync } from "node:fs";
-import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import semanticRelease from "semantic-release";
-
-type ReleasePlugin = string | [string, Record<string, unknown>];
-type ReleaseConfig = { plugins: ReleasePlugin[] };
-
-const require = createRequire(import.meta.url);
-const releaseConfig = require("../release.config.cjs") as ReleaseConfig;
+import releaseConfig from "../release.config.ts";
 
 async function checkReleaseNotes(): Promise<void> {
   const cwd = mkdtempSync(join(tmpdir(), "nuxt-bundle-release-notes-"));
