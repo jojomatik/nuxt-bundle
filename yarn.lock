@@ -4033,6 +4033,11 @@
     semver "^7.7.4"
     unplugin "^3.0.0"
 
+"@vuetify/v0@^1.2.3":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@vuetify/v0/-/v0-1.3.2.tgz#749c5cd3968b1ae54d88d68c37cceb2a33da1f48"
+  integrity sha512-+LXktqYC91aTbS3WOPvEOjo1CmtwpuAmqQZTtygpR/tVll9uzCQzscNhTPexlyx28bFOn5pbxAQj7LBhqohdIA==
+
 "@vueuse/core@^15.0.0":
   version "15.0.0"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-15.0.0.tgz#d4ca881cbee5ba653bda1a388ce441e8eed4e61d"
@@ -11052,10 +11057,12 @@ vuetify-nuxt-module@1.0.0-rc.6:
     ufo "^1.6.4"
     unconfig "^7.5.0"
 
-vuetify@3.13.7:
-  version "3.13.7"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.13.7.tgz#60da404ce36488e4b5337c3510a9cd5448d51d8f"
-  integrity sha512-HJ93r7kPRz9U1Xfd4vqseG1lL98LAG9a25jDZ+P4x9VEmK+ucpbQ56r2tTqeIUlCOxrl3FCmjNYL82WeRtOosA==
+vuetify@4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-4.3.3.tgz#dd2b1f660ea470b7085565f580c513e34bc1852a"
+  integrity sha512-hpT9bZP5pXcK4MnqHldY/FtmNgi7Ewjizbl4LY6hcYgLiwxaLwiD2wo/SFBPM89s9gyZry0/ywc6mMDnDohscw==
+  dependencies:
+    "@vuetify/v0" "^1.2.3"
 
 walk-up-path@^4.0.0:
   version "4.0.0"
