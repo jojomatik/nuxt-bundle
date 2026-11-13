@@ -9469,10 +9469,10 @@ rolldown@~1.2.18:
     "@rolldown/binding-win32-arm64-msvc" "1.2.18"
     "@rolldown/binding-win32-x64-msvc" "1.2.18"
 
-rollup-plugin-license@3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-license/-/rollup-plugin-license-3.7.1.tgz#b99329f1c840142559789e3d6cb9f69e9e5b36ef"
-  integrity sha512-FcGXUbAmPvRSLxjVdjp/r/MUtKBlttVQd+ApUyvKfREnsoAfAZA6Ic2fE1Tz4RL0f9XqEQU9UIRNUMdtQtliDw==
+rollup-plugin-license@3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-license/-/rollup-plugin-license-3.7.2.tgz#c18303ca5b29f2640be391280a97645b27a6ca18"
+  integrity sha512-xsEifZTR9xIFzgXqhNEoWmdM8mwLyEynXr50krGTCv/OhBAXS8+YFDWpD7pdT3Q1DZdt9T9yu7sACEfYiRdq8A==
   dependencies:
     commenting "^1.1.0"
     fdir "^6.4.3"
