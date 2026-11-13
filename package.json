@@ -62,7 +62,7 @@
     "semantic-release": "25.0.9",
     "sharp": "0.35.5",
     "storybook": "10.6.7",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "vue-router": "5.5.0",
     "vuetify": "3.13.7",
     "vuetify-nuxt-module": "1.0.0-rc.6"
