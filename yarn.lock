@@ -324,6 +324,13 @@
     hashery "^1.5.1"
     keyv "^5.6.0"
 
+"@capsizecss/unpack@^4.0.0":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@capsizecss/unpack/-/unpack-4.0.1.tgz#5fc5f3a371a93a69d764e81a09badf0143381739"
+  integrity sha512-CuNiSqg7+e1cO/GjffyMOm5Tt2jUF9CWHHnvQ/UkqvtkGfHdgwEC0wpmq7fkN3gxwpRnrAN0WzO3vREKmNolMQ==
+  dependencies:
+    fontkitten "^1.0.3"
+
 "@clack/core@1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@clack/core/-/core-1.6.0.tgz#943babea58496602d92666be05ac14d1a703ab9b"
@@ -1749,6 +1756,28 @@
     mlly "^1.8.2"
     pathe "^2.0.3"
     unimport "^6.4.0"
+
+"@nuxt/fonts@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@nuxt/fonts/-/fonts-1.2.0.tgz#96fef074cca035430418ea82a189690cba0a3bcb"
+  integrity sha512-Z2DXpzxMnAWqZElth9RVw+bZCbnVR6QuPBRuuYmDWSIpTVhADcDZUPf/boiWJRz06fwmf13i+pDebQapciLf7A==
+  dependencies:
+    "@nuxt/kit" "^4.6.2"
+    defu "^6.1.7"
+    devframe "^1.2.5"
+    exsolve "^1.1.3"
+    fontless "^1.3.2"
+    h3 "^1.15.11"
+    magic-regexp "^0.11.2"
+    nypm "^0.6.10"
+    ofetch "^1.5.1"
+    pathe "^2.0.3"
+    std-env "^4.3.0"
+    tinyglobby "^0.2.17"
+    ufo "^1.6.4"
+    unifont "^1.0.3"
+    unplugin "^3.4.0"
+    unstorage "^1.17.6"
 
 "@nuxt/image@2.2.1":
   version "2.2.1"
@@ -5062,6 +5091,14 @@ crypto-random-string@^4.0.0:
   dependencies:
     type-fest "^1.0.1"
 
+css-tree@^3.1.0:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-3.2.1.tgz#86cac7011561272b30e6b1e042ba6ce047aa7518"
+  integrity sha512-X7sjQzceUhu1u7Y/ylrRZFU2FS6LRiFVp6rKLPg23y3x3c3DOKAwuXGDp+PAGjh6CSnCjYeAul8pcT8bAl+lSA==
+  dependencies:
+    mdn-data "2.27.1"
+    source-map-js "^1.2.1"
+
 css.escape@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/css.escape/-/css.escape-1.5.1.tgz#42e27d4fa04ae32f931a4b4d4191fa9cddee97cb"
@@ -5187,7 +5224,7 @@ devalue@^6.0.2, devalue@^6.0.3:
   resolved "https://registry.yarnpkg.com/devalue/-/devalue-6.0.3.tgz#60dd3006924f8743b6275772f9707af652463f13"
   integrity sha512-3woMEITftG1wKeO/4d/QXH1DVKctTSZg3jNGPpjp9hNr5Hos8MCFF5McTML5ZtgKDObm2R591B0spRp2IVernA==
 
-devframe@^1.0.0:
+devframe@^1.0.0, devframe@^1.2.5:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/devframe/-/devframe-1.3.3.tgz#6f5a23aec7ca49a067fc0dbf3cd579d83ea81af3"
   integrity sha512-RB9gTSJ5M3TSyxsaqbTyTtHEmyYwjqUtWAYrQz8SJllq5yR4UPzjTvkDCEYrlv1xNCnbIQ/WL8s6jozh/4wdoA==
@@ -6060,6 +6097,35 @@ fnv1a-64@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/fnv1a-64/-/fnv1a-64-0.1.2.tgz#1cca3d160c92c0d8e5b3df3a9d8e2f71cbb7b2e8"
   integrity sha512-mJbcILTPybAR1jdOwt/lVv8N2cffeJFFP+gVbSAwLEx1ujXH27RpPd8Rokec/KX9c76UYIB6Co+H4lQzxPnJfA==
+
+fontaine@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/fontaine/-/fontaine-1.0.3.tgz#36b659083d110f142e53ff3f5715f0a70754a37c"
+  integrity sha512-mCeB9tcB2qeDJYVp/f55ZUQMOkOaZn4MFDlsCsy8Vggsju47egnH1+qzWwderp3BuX2EyezhdsjNX64df6M5mg==
+  dependencies:
+    "@capsizecss/unpack" "^4.0.0"
+    css-tree "^3.1.0"
+    magic-string "^1.0.0"
+    unplugin "^3.0.0"
+
+fontkitten@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/fontkitten/-/fontkitten-1.0.3.tgz#bbafdeddbb1e054967f0846fdc757accab88bb68"
+  integrity sha512-Wp1zXWPVUPBmfoa3Cqc9ctaKuzKAV6uLstRqlR56kSjplf5uAce+qeyYym7F+PHbGTk+tCEdkCW6RD7DX/gBZw==
+  dependencies:
+    tiny-inflate "^1.0.3"
+
+fontless@^1.3.2:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/fontless/-/fontless-1.3.4.tgz#be22e40b2d088a8b031b16a6de5e63156f1cec23"
+  integrity sha512-GVj56LLcqGsBY9A2Pp2vJxmYFXNIAJUjPdLBFlJJXfKnZ/ta7mgT8a6kS2mx5tNsjWhhz6HiwSamzc2q80UpHQ==
+  dependencies:
+    css-tree "^3.1.0"
+    defu "^6.1.4"
+    exsolve "^1.1.1"
+    fontaine "1.0.3"
+    magic-string "^1.0.0"
+    unifont "^1.0.2"
 
 fraction.js@^5.3.4:
   version "5.3.4"
@@ -7405,6 +7471,16 @@ magic-regexp@^0.10.0:
     ufo "^1.5.4"
     unplugin "^2.0.0"
 
+magic-regexp@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/magic-regexp/-/magic-regexp-0.11.2.tgz#931f94c35859a881499be42bcaee0b4d19da4e96"
+  integrity sha512-s4i7mq2jJnkB5J1HDX67GmdRoWrgo8tE0cL91bKO+HaquxyR5TiqkjVfLhgS2PXretsN/Gv9kSnRBgQxrLO/Qw==
+  dependencies:
+    magic-string "^1.1.0"
+    regexp-tree "^0.1.27"
+    type-level-regexp "~0.1.17"
+    unplugin "^3.3.0"
+
 magic-string-ast@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/magic-string-ast/-/magic-string-ast-1.0.3.tgz#51ef7832fd5c70a0188fb94627caa3b8c74ff9bf"
@@ -7484,6 +7560,11 @@ math-intrinsics@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/math-intrinsics/-/math-intrinsics-1.1.0.tgz#a0dd74be81e2aa5c2f27e65ce283605ee4e2b7f9"
   integrity sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==
+
+mdn-data@2.27.1:
+  version "2.27.1"
+  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.27.1.tgz#e37b9c50880b75366c4d40ac63d9bbcacdb61f0e"
+  integrity sha512-9Yubnt3e8A0OKwxYSXyhLymGW4sCufcLG6VdiDdUGVkPhpqLxlvP5vl1983gQjJl3tqbrM731mjaZaP68AgosQ==
 
 mdn-data@2.37.2:
   version "2.37.2"
@@ -10285,6 +10366,11 @@ time-span@^5.1.0:
   dependencies:
     convert-hrtime "^5.0.0"
 
+tiny-inflate@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-inflate/-/tiny-inflate-1.0.3.tgz#122715494913a1805166aaf7c93467933eea26c4"
+  integrity sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==
+
 tiny-invariant@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.3.3.tgz#46680b7a873a0d5d10005995eb90a70d74d60127"
@@ -10535,7 +10621,7 @@ undici@^7.0.0:
   resolved "https://registry.yarnpkg.com/undici/-/undici-7.30.2.tgz#26c6acb0ffe838f823511f8cb79a8d530652135e"
   integrity sha512-mLyPQnHwUxaM/rideoK/+KL8DaAJLRl4aBCfmX444aCSLnIaomqPLtNRe2jdCYcsk5wZzXrDIQC8ZeYNRAYyIA==
 
-undici@^8.12.3:
+undici@^8.0.0, undici@^8.12.3:
   version "8.12.4"
   resolved "https://registry.yarnpkg.com/undici/-/undici-8.12.4.tgz#0c0cabeafd9a9c3139f9ace62ee9436c0d355c72"
   integrity sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA==
@@ -10574,6 +10660,16 @@ unicorn-magic@^0.4.0:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/unicorn-magic/-/unicorn-magic-0.4.1.tgz#b7a367e6e10c96da7e6b9b007d69c11c7d558dee"
   integrity sha512-lzlXPoVB0Uy/FvTaUgX39RbixYiSKoc3JSoSf01+0c2B6FR3qdYIPN7Qjo/AV7n6sqLCk0509cT3LRj1oSZ1+A==
+
+unifont@^1.0.2, unifont@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/unifont/-/unifont-1.0.3.tgz#e33c242afc18111a858a0a51c29e2ef766586a36"
+  integrity sha512-XGnEwj5sWdCbiBX01mWLSBncS0yMRjnLygau3IfdOlfjMacNIQvTGW4VH7pWBq+gGWArfSef/CensMLjMmIr/A==
+  dependencies:
+    css-tree "^3.1.0"
+    fnv1a-64 "^0.1.2"
+    std-env "^4.2.0"
+    undici "^8.0.0"
 
 unimport@^6.4.0, unimport@^6.5.0:
   version "6.5.0"

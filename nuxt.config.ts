@@ -1,5 +1,4 @@
 import * as fs from "fs";
-import chalk from "chalk";
 import type { LocaleObject } from "@nuxtjs/i18n";
 import type { GeneratedLocale } from "@intlify/core-base";
 import vuetifyOptions from "./vuetify-options";
@@ -32,16 +31,6 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "out-in" },
     head: {
       link: [
-        {
-          as: "font",
-          rel: "preload",
-          href: "/assets/fonts/roboto/files/roboto-latin-400-normal.woff2",
-          crossorigin: "anonymous",
-        },
-        {
-          rel: "stylesheet",
-          href: "/assets/fonts/roboto/index.css",
-        },
         // Favicon generated with https://realfavicongenerator.net/
         {
           rel: "icon",
@@ -81,6 +70,7 @@ export default defineNuxtConfig({
   css: ["vuetify/styles"],
   modules: [
     "@crystal-creations/crystal-components/nuxt",
+    "@nuxt/fonts",
     "@nuxt/image",
     "@nuxtjs/i18n",
     "@nuxtjs/seo",
@@ -90,6 +80,20 @@ export default defineNuxtConfig({
   ],
   licenseModule: {
     allowedLicenses: ["MIT", "Apache-2.0", "ISC", "OFL-1.1"],
+  },
+  fonts: {
+    npm: { remote: false },
+    experimental: { disableLocalFallbacks: true },
+    families: [
+      {
+        name: "Roboto",
+        provider: "npm",
+        global: true,
+        weights: [300, 400, 500, 700],
+        styles: ["normal", "italic"],
+        preload: true,
+      },
+    ],
   },
   i18n: {
     locales: getLocales(),
@@ -106,16 +110,6 @@ export default defineNuxtConfig({
   // Storybook's Nuxt preset disables experimental.appManifest, which nuxt-skew-protection requires.
   skewProtection: {
     enabled: !isStorybook,
-  },
-  hooks: {
-    "nitro:build:before": () => {
-      const fontsDir = "public/assets/fonts/";
-
-      fs.cpSync("node_modules/@fontsource/", fontsDir, {
-        recursive: true,
-      });
-      console.log(chalk.green("√"), "Copied fonts to " + fontsDir);
-    },
   },
   nitro: {
     compressPublicAssets: true,

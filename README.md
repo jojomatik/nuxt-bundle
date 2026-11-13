@@ -39,6 +39,14 @@ licenseModule: {
 }
 ```
 
+## Fonts
+
+The bundle uses Nuxt Fonts with the npm-installed `@fontsource/roboto` package.
+Roboto is self-hosted with normal and italic styles at weights 300, 400, 500,
+and 700. The Latin 400 normal face is preloaded in production. Both the font
+package and Nuxt Fonts are pinned dependencies of the bundle. Locally installed
+system font sources are disabled so browsers use the bundled font version.
+
 ## Favicons
 The favicon module is opt-in. When enabled, it generates all favicon files from a single SVG during the build:
 
