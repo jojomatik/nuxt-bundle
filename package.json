@@ -57,7 +57,7 @@
     "eslint-plugin-vue": "10.12.1",
     "prettier": "3.9.10",
     "rollup": "4.68.2",
-    "rollup-plugin-license": "3.7.1",
+    "rollup-plugin-license": "3.7.2",
     "sass": "1.108.1",
     "semantic-release": "25.0.9",
     "sharp": "0.35.5",
