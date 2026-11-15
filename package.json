@@ -68,7 +68,7 @@
     "vuetify-nuxt-module": "1.0.0-rc.6"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "6.0.10",
+    "@vitejs/plugin-vue": "6.0.11",
     "@vitest/coverage-v8": "5.1.0",
     "@vue/test-utils": "2.5.1",
     "eslint": "10.14.0",
