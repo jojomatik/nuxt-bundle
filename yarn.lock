@@ -364,23 +364,23 @@
   resolved "https://registry.yarnpkg.com/@conventional-changelog/template/-/template-1.4.1.tgz#cfb4cc394ef7adc60d221fe9547fcad2466b866f"
   integrity sha512-mHyyEL0eIEqJ6+aF24+AdZRo4bu4W5GdUiCiCx5X7kfDY51ye8GQJ264uOINObrRSKxtSRCOWPpl9hbOy4UzxQ==
 
-"@crystal-creations/animated-checkmark@4.0.0-beta.5":
-  version "4.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@crystal-creations/animated-checkmark/-/animated-checkmark-4.0.0-beta.5.tgz#18e689b206df15aae5392e9a206ac9dbd4f6b8df"
-  integrity sha512-DNZBpjeW6sHEFBQ7kObUwwUKqWA9wxzo6DXaQHretbApPo08WPLZ0x/QT+O/pc9xTnB/XalkH1fIaFLlwSApPA==
+"@crystal-creations/animated-checkmark@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@crystal-creations/animated-checkmark/-/animated-checkmark-4.0.0.tgz#31e6f2c69b68075f74369142d992b01a0d76f547"
+  integrity sha512-KprWG8keMhwly6H67/SJ8JsXXqmVGNq0APBlUont4Yd19674wAoTGf3IotdvwQkxwCXUoAqZzPE/+gLpe9Docw==
 
-"@crystal-creations/crystal-components@1.0.0-beta.49":
-  version "1.0.0-beta.49"
-  resolved "https://registry.yarnpkg.com/@crystal-creations/crystal-components/-/crystal-components-1.0.0-beta.49.tgz#b13c3237deec7dd7d0274cc1648ed3e2b3a7e4e9"
-  integrity sha512-9WFzfRAMzC3vm3XynuE/SRfSTACBevCbpsn9HOYP07H1nPWsYIX42N2j4j1+nZqQKinwFqBRKmGaKE3kFOOEVQ==
+"@crystal-creations/crystal-components@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@crystal-creations/crystal-components/-/crystal-components-1.0.0.tgz#ca2488dc0b85b01c16ea05ff824a871cb93abdcf"
+  integrity sha512-tfNgEpxQ74Wm9zUiUK52LBt8dAJQRQZnWchAjveZupMj/v2c1ZaYmg4+jHvBmliidBVaMFUoTUCe/yb495t9rg==
   dependencies:
-    "@crystal-creations/animated-checkmark" "4.0.0-beta.5"
-    "@crystal-creations/pulsating-circle" "4.0.0-beta.1"
+    "@crystal-creations/animated-checkmark" "4.0.0"
+    "@crystal-creations/pulsating-circle" "4.0.0"
 
-"@crystal-creations/pulsating-circle@4.0.0-beta.1":
-  version "4.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@crystal-creations/pulsating-circle/-/pulsating-circle-4.0.0-beta.1.tgz#946526da99c003726c362aed0f4704a44ada8061"
-  integrity sha512-Frrtz3VycbDavJV/XODymjw7g3alWf9HEydEZSemdH74SHdRDJUerNn5nYSPiFRGR87Mg019gzNbyKfcwYOkWg==
+"@crystal-creations/pulsating-circle@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@crystal-creations/pulsating-circle/-/pulsating-circle-4.0.0.tgz#ca0ece3cf6a9aea8db2e0ba8d2527443fc5698af"
+  integrity sha512-9QwUz1Lyhnt1onVoQDnXbTwY6OVY8/ngQc62OPUN1iLbyEsteyNmAw3KXz6ZGlIrO1lXRrVEUji0JZ832aFD3Q==
 
 "@csstools/css-tokenizer@^4.0.2":
   version "4.0.2"
