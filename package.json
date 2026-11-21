@@ -64,7 +64,7 @@
     "storybook": "10.6.7",
     "typescript": "6.0.3",
     "vue-router": "5.5.1",
-    "vuetify": "3.13.7",
+    "vuetify": "3.13.8",
     "vuetify-nuxt-module": "1.0.0-rc.6"
   },
   "devDependencies": {
