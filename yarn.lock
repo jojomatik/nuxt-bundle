@@ -350,9 +350,9 @@
   integrity sha512-SIOD2DxrRRwQ+jgzlXCqoEFiKOFqaPjhnNTGKXSRLvp1HiOvapLaFG2kEr9dYQTYe8rKrd9uvDUzmAITeNyaHQ==
 
 "@colordx/core@^7.3.0":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@colordx/core/-/core-7.3.0.tgz#84eaf97d4e764254e5085e7af7583eb2dd216d0c"
-  integrity sha512-LVzTTPhX7wpy7TkGjouA9zbbCBIw92RGm7ZQqSKFE0oYE3sMx2FGXz90eVpgw7k/+wrrY+qJ86nHXifZWMS5jA==
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@colordx/core/-/core-7.4.0.tgz#025a4776227b176410dd1868867c4e517ac277b3"
+  integrity sha512-TjIukbr2qfzdWZgR7U2o9+7zuqiwVPn2MBnODv5ysw3TgnVJ7oMtrsZfU8OwbOIbP1wwIS9+qBPhKBWdOhlJCQ==
 
 "@colors/colors@1.5.0":
   version "1.5.0"
@@ -1632,9 +1632,9 @@
     proc-log "^7.0.0"
 
 "@nuxt/cli@^4.0.1":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@nuxt/cli/-/cli-4.0.3.tgz#ee75b78d940674e5343add356107a38bde61cbad"
-  integrity sha512-ca3G9E8G3QT/uUoRUfiwxmu7ER8jEa3rc1SiSJ5EkfB2NRUhPFZpGENiUEBDwuUZsQWgYvh644pnkN80rPlvXA==
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@nuxt/cli/-/cli-4.1.0.tgz#a4a6e75a36d7cd192167ce8be94e474c7642a992"
+  integrity sha512-bsNP9LAYZ6xqS7KxJEahBrzkGgKLCjN+4nVYg9edLs2I5j0/6TrUHnOFFLEL9FLKRFvNi+mPeFOGdxS+ZGDR3g==
   dependencies:
     "@clack/prompts" "^1.8.1"
     args-tokenizer "^0.3.0"
@@ -1645,7 +1645,7 @@
     exsolve "^1.2.0"
     fuzzysort "^4.0.2"
     get-port-please "^3.2.0"
-    my-bad "^0.2.11"
+    my-bad "^1.2.0"
     obug "^3.0.0"
     package-manager-detector "^1.9.0"
     pathe "^2.0.3"
@@ -4892,9 +4892,9 @@ caniuse-api@^4.0.0:
     caniuse-lite "^1.0.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001826:
-  version "1.0.30001826"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001826.tgz#6c2cc43e4858e54d6f7200fa87b4de93cb39aa77"
-  integrity sha512-wTB+9tIbLro/BCXwLuNV1meHE4L9dS6dArMDwgYfNBPMYScqClHyGunhkCSDtHhe/69Xl0sHlKgBVZ+fNsYtWA==
+  version "1.0.30001827"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001827.tgz#42db7cf8d15cbd4d66e2f4fde885009565f8bdeb"
+  integrity sha512-YWEDr46gSO81M8w6uPbaIy4++IXsirx2asUqvllNiD4BPf75ibxclUjWEqp8ObCenRv+UM2n5Y8xuRPT8V8FrQ==
 
 chai@^5.2.0:
   version "5.3.3"
@@ -7926,6 +7926,15 @@ my-bad@^0.2.11:
   version "0.2.12"
   resolved "https://registry.yarnpkg.com/my-bad/-/my-bad-0.2.12.tgz#7d0a32ce7fad52a84be9cb9c2281f6fbffa6f83f"
   integrity sha512-AUIllvH8rjgkGEHEBcHbKmQyq2G8mhZ+U7kOhh7UKhS6cZROFHOP5KQ2uo13IcXbK7CWxEyfs/hNNKuz6x42TQ==
+  dependencies:
+    clickable-path "^0.1.1"
+    errx "^0.2.2"
+    fnv1a-64 "^0.1.2"
+
+my-bad@^1.2.0:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/my-bad/-/my-bad-1.3.1.tgz#3f7a633122bf57528e1add0e9a0d3d801cf9029b"
+  integrity sha512-fXJrmk58jNXr2jMqNFwwEkAJcAnLFO/6xnDsu9E4/vA3YZL5bdIsuXKSxvNZpxQU7pYI4nTTvN7k4pPMv51u9A==
   dependencies:
     clickable-path "^0.1.1"
     errx "^0.2.2"
