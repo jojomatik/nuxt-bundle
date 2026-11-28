@@ -2016,14 +2016,14 @@
     ufo "^1.6.4"
     ultrahtml "^1.7.0"
 
-"@nuxtjs/storybook@10.0.3":
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/storybook/-/storybook-10.0.3.tgz#7c3ffb793d804fa710ad95627e6af7f2c8557993"
-  integrity sha512-nLXuuj3MMNt8zDhYnHlVfqcNn5b2Y+KUMRKVG4TRDgZqa/2ZMTTL8HwQM3do9GOpvDcyHa1PcvlLMx1R96bsag==
+"@nuxtjs/storybook@10.0.4":
+  version "10.0.4"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/storybook/-/storybook-10.0.4.tgz#f19a31f4587dfc35e387330f94b6f30d4ec484a1"
+  integrity sha512-zITh3Ucb7mqjZGMZWHsYkhvFrlLcYGJ8kZwR/UULicfxoER7zPrStoKYKOZfEqKanvrQRgcUZv8P94tOdScPqA==
   dependencies:
     "@nuxt/devtools-kit" "^3.0.0"
     "@nuxt/kit" "^3.18.1 || ^4.0.0"
-    "@storybook-vue/nuxt" "10.0.3"
+    "@storybook-vue/nuxt" "10.0.4"
     chalk "^5.6.2"
     consola "^3.4.2"
     defu "^6.1.4"
@@ -3425,10 +3425,10 @@
   resolved "https://registry.yarnpkg.com/@speed-highlight/core/-/core-1.2.24.tgz#e70acdec4f12420f6ec642ce987150622529bd67"
   integrity sha512-qeW2e1l78afw8VhRPfPQ1Gjj+KU5XFQ/OFV5ti6eTa9bruO7mJyZtA4vw0ofqmA3tKCkROE9xLk3VZoeRc98nw==
 
-"@storybook-vue/nuxt@10.0.3":
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/@storybook-vue/nuxt/-/nuxt-10.0.3.tgz#4f6db5bcbd5962769e43747b8381ae467bcc6a77"
-  integrity sha512-2/D7bWPxieEuPQVcr6WcA0YKXOJZ3nmZBn9d77TrAJbL13upHBudyIhdJLlNV6tL8mxWP7DWzFFDYyAJOSzoMQ==
+"@storybook-vue/nuxt@10.0.4":
+  version "10.0.4"
+  resolved "https://registry.yarnpkg.com/@storybook-vue/nuxt/-/nuxt-10.0.4.tgz#bf2877152f5f07f711dda9cb2f043795a0130fed"
+  integrity sha512-7FJLafYArQj4qY9pHKBEXbuYx2V2/mfxePtYZQtDzA1IoBtNj8GR9+gEUlnYcc+T5mMkH/H9ciIpk/qWs2fPPw==
   dependencies:
     "@nuxt/kit" "^4.0.0"
     "@nuxt/schema" "^4.0.0"
