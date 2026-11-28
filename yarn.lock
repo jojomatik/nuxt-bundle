@@ -4871,10 +4871,10 @@ chownr@^3.0.0:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-3.0.0.tgz#9855e64ecd240a9cc4267ce8a4aa5d24a1da15e4"
   integrity sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==
 
-chromatic@18.15.2:
-  version "18.15.2"
-  resolved "https://registry.yarnpkg.com/chromatic/-/chromatic-18.15.2.tgz#e7037afa029d59195e408deb2b79276ba9c77ceb"
-  integrity sha512-SF7uJYvfsGS4QqVlv53B9RUVcN608h7TZOsFiD1RNk/rAcJ9ZCu2f2y5azNp76g3VuePw826bU1hB7WWroFKpQ==
+chromatic@18.15.3:
+  version "18.15.3"
+  resolved "https://registry.yarnpkg.com/chromatic/-/chromatic-18.15.3.tgz#55921f93231140e2e691d2e4234e660bcac1396e"
+  integrity sha512-y5RaLkJb/4/pa7hX21kIY10498n6FuYkI8f1TlESAomzJsIa8joFIB+23RBtAIYOKxHb/1WmoJSQ89yrSnzn6A==
   dependencies:
     semver "^7.3.5"
 
