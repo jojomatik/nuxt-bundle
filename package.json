@@ -43,7 +43,7 @@
     "@nuxt/image": "2.2.1",
     "@nuxtjs/i18n": "10.6.0",
     "@nuxtjs/seo": "6.1.0",
-    "@nuxtjs/storybook": "10.0.3",
+    "@nuxtjs/storybook": "10.0.4",
     "@semantic-release/exec": "7.1.0",
     "@semantic-release/git": "11.0.1",
     "@storybook/addon-docs": "10.6.8",
